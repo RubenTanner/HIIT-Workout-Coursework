@@ -8,12 +8,18 @@
   color: red;
 }
 
+#command {
+  font-size: 30px;
+}
+
+#timer {
+  font-size: 36px;
+}
+
 .inputs {
   font-size: 24px;
   display: flex;
   gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .inputs input,
@@ -30,9 +36,20 @@
 
 .input-control {
   font-size: 18px;
-  display: flex;
-  align-items: center;
   gap: 5px;
+}
+
+.minus,
+.plus {
+  width: 20px;
+  height: 20px;
+  background: #f2f2f2;
+  border-radius: 4px;
+  padding: 8px 5px 8px 5px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
 }
 
 button {
@@ -45,45 +62,24 @@ button {
   border-radius: 8px;
 }
 
-.buttons {
-  margin: 20px 0 20px 0;
-}
-
 .timer-container {
   position: relative;
   margin: 10px 0 10px 0;
   width: 10em;
   height: 10em;
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
-
-  /*   color: white; */
+  justify-content: center;
   font-size: 25px;
   line-height: 40px;
   text-align: center;
   border: 5px solid rgb(192, 192, 192, 0.7);
   border-radius: 50%;
-  cursor: pointer;
-  /*   transition: transform .5s ease-out; */
-  transition: all 0.25s ease-in-out;
-}
-
-.timer-container:active {
-  transform: scale(0.95);
-}
-
-#timer {
-  font-size: 36px;
 }
 
 .rounds {
   font-size: 18px;
-}
-
-#command {
-  font-size: 30px;
 }
 
 .msgElement {
@@ -94,7 +90,6 @@ button {
   display: none;
   position: absolute;
   min-width: 200px;
-  /*   top: -150%; */
   top: 9;
   right: 0;
   background: rgb(15, 15, 15, 0.8);
