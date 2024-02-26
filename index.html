@@ -1,75 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <script src="/main.js"></script>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>HIIT Timer</title>
-    <link rel="stylesheet" href="/styles.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="main.js"></script>
   </head>
   <body>
     <div class="container">
-      <!-- INPUTS -->
-      <div id="inputs" class="inputs">
-        <div class="input-control">
-          <label for="setTime">Work Time:</label>
-          <div class="input-control">
-            <span class="minus">-</span>
-            <input type="text" name="setTime" id="setTime" value="1" />
-            <span class="plus">+</span>
-          </div>
+      <h1>HIIT Timer</h1>
+      <p class="status-text">Activity</p>
+      <p class="time" id="time">00:00</p>
+      <button id="start-btn" class="btn">Start</button>
+      <div class="advanced-options">
+        <button id="expand-btn" class="btn">Advanced Options</button>
+        <div id="options-content" class="hidden">
+          <p class="advanced"></p>
+          <span class="minus">-</span>
+          <input type="text" name="setTime" id="setTime" value="30" />
+          <span class="plus">+</span>
         </div>
-        <div class="input-control">
-          <label for="setRest">Rest Time:</label>
-          <div class="btns">
-            <span class="minus">-</span>
-            <input type="text" name="setRest" id="setRest" value="1" />
-            <span class="plus">+</span>
-          </div>
-        </div>
-        <div class="input-control">
-          <label for="setRounds">Rounds:</label>
-          <div class="btns">
-            <span class="minus">-</span>
-            <input type="text" name="setRounds" id="setRounds" value="1" />
-            <span class="plus">+</span>
-          </div>
-        </div>
-      </div>
-
-      <!--  NAVIGATION  -->
-      <div class="buttons">
-        <button id="submit">Start</button>
-        <button id="reset">Reset</button>
-      </div>
-
-      <!--  OUTPUT  -->
-      <div class="timer-container">
-        <div class="rounds">
-          <span>Rounds left:</span>
-          <span id="round">0</span>
-        </div>
-        <div id="command">Get Ready!</div>
-        <div id="timer" class="timer">0:00</div>
       </div>
     </div>
   </body>
-  <script>
-    $(document).ready(function () {
-      $(".minus").click(function () {
-        let $input = $(this).parent().find("input");
-        let count = parseInt($input.val()) - 1;
-        count = count < 1 ? 1 : count;
-        $input.val(count);
-        $input.change();
-        return false;
-      });
-      $(".plus").click(function () {
-        let $input = $(this).parent().find("input");
-        $input.val(parseInt($input.val()) + 1);
-        $input.change();
-        return false;
-      });
-    });
-  </script>
 </html>
