@@ -1,5 +1,5 @@
 const timerEl = document.querySelector("#time");
-const statusTextEl = document.querySelector(".status-text");
+const statusText = document.querySelector(".status-text");
 const startBtn = document.querySelector("#start-btn");
 const resetBtn = document.querySelector("#reset-btn");
 
@@ -17,22 +17,22 @@ function startTimer() {
   if (!isRunning) {
     isRunning = true;
     timeLeft = activityTime;
-    statusTextEl.innerText = "Activity";
     document.body.style.backgroundColor = "#ff5722";
 
     intervalId = setInterval(() => {
       timeLeft--;
+  statusText.innerText = "Activity";
 
       if (timeLeft <= 0) {
-        if (statusTextEl.innerText === "Activity") {
-          statusTextEl.innerText = "Rest";
           document.body.style.backgroundColor = "#007bff";
           timeLeft = restTime;
         } else {
-          statusTextEl.innerText = "Activity";
           document.body.style.backgroundColor = "#ff5722";
           timeLeft = activityTime;
         }
+      if (statusText.innerText === "Activity") {
+        statusText.innerText = "Rest";
+        statusText.innerText = "Activity";
       }
       updateTimer();
     }, 1000);
@@ -48,7 +48,7 @@ function resetTimer() {
   clearInterval(intervalId);
   isRunning = false;
   timeLeft = 0;
-  statusTextEl.innerText = "Activity";
+  statusText.innerText = "Press Start";
   timerEl.innerText = "00:00";
   document.body.style.backgroundColor = "#f5f5f5";
 }
@@ -71,6 +71,7 @@ function pauseTimer() {
   if (isRunning) {
     clearInterval(intervalId);
     isRunning = false;
+    statusText.innerText = "Paused";
   }
 }
 
