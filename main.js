@@ -80,9 +80,6 @@ function pauseTimer() {
   }
 }
 
-/**
- * Names the workout.
- */
 startBtn.addEventListener("click", () => {
   if (!isRunning) {
     startTimer();
