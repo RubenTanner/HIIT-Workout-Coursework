@@ -6,21 +6,19 @@
     <script type="module" src="../main.js"></script>
   </head>
   <body>
-    <div class="container">
+    <section class="container">
       <h1>Quick Start</h1>
       <p class="status-text">Press Start</p>
       <p class="time" id="time">00:00</p>
-      <p class="sets-text">Sets Remaining</p>
-      <p class="sets" id="sets">0</p>
       <section class="sets-section" style="display: none">
         <p class="sets-text">Sets Remaining</p>
         <p class="sets" id="sets">0</p>
       </section>
       <button id="start-btn" class="btn">Start</button>
       <button id="reset-btn" class="btn">Reset</button>
-      <div class="advanced-options">
-        <button id="expand-btn" class="btn">Advanced Options</button>
-        <div class="options-content">
+      <section class="advanced-options">
+        <button id="expand-btn" class="btn">Options</button>
+        <section class="options-content">
           <p class="advanced">Adjust the default timings</p>
           <p>Activity Time (seconds)</p>
           <input type="text" id="set-activity" value="30" />
@@ -28,8 +26,8 @@
           <input type="text" id="set-rest" value="10" />
           <p>Number Of Sets</p>
           <input type="text" id="set-sets" value="5" />
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </section>
   </body>
 </html>
