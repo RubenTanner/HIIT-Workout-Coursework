@@ -1,5 +1,6 @@
 const timerEl = document.querySelector("#time");
 const setsEl = document.querySelector("#sets");
+const setsSection = document.querySelector(".sets-section");
 const statusText = document.querySelector(".status-text");
 const startBtn = document.querySelector("#start-btn");
 const resetBtn = document.querySelector("#reset-btn");
@@ -22,6 +23,7 @@ function startTimer() {
   timeLeft = activityTime;
   statusText.innerText = "Activity";
   setsEl.innerText = sets;
+  setsSection.style.display = "block";
   document.body.style.backgroundColor = "#ff5722";
 
   interval = setInterval(() => {
@@ -53,6 +55,7 @@ function resetTimer() {
   clearInterval(interval);
   isRunning = false;
   timeLeft = 0;
+  setsSection.style.display = "none";
   statusText.innerText = "Press Start";
   timerEl.innerText = "00:00";
   document.body.style.backgroundColor = "#f5f5f5";
