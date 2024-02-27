@@ -1,7 +1,7 @@
-const timerEl = document.getElementById("time");
+const timerEl = document.querySelector("#time");
 const statusTextEl = document.querySelector(".status-text");
-const startBtn = document.getElementById("start-btn");
-const resetBtn = document.getElementById("reset-btn");
+const startBtn = document.querySelector("#start-btn");
+const resetBtn = document.querySelector("#reset-btn");
 
 let isRunning = false;
 let intervalId;
