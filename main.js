@@ -8,7 +8,7 @@ const setRest = document.querySelector("#set-rest");
 const setSets = document.querySelector("#set-sets");
 
 let isRunning = false;
-let intervalId;
+let interval;
 let timeLeft = 0;
 /**
  * Starts the timer for the HIIT workout.
@@ -24,7 +24,7 @@ function startTimer() {
   setsEl.innerText = sets;
   document.body.style.backgroundColor = "#ff5722";
 
-  intervalId = setInterval(() => {
+  interval = setInterval(() => {
     timeLeft--;
     if (timeLeft <= 0) {
       if (statusText.innerText === "Activity") {
@@ -50,7 +50,7 @@ function startTimer() {
  * Resets the timer and sets the initial values.
  */
 function resetTimer() {
-  clearInterval(intervalId);
+  clearInterval(interval);
   isRunning = false;
   timeLeft = 0;
   statusText.innerText = "Press Start";
@@ -74,7 +74,7 @@ function updateTimer() {
  */
 function pauseTimer() {
   if (isRunning) {
-    clearInterval(intervalId);
+    clearInterval(interval);
     isRunning = false;
     statusText.innerText = "Paused";
   }
