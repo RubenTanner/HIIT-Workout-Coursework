@@ -6,7 +6,7 @@
 
 The quick start feature allows a user to quickly start a preset workout of just time. The user can adjust the default activity and rest time using the "advanced options" tab as well as adjusting the amount of sets.
 
-### Visual cues
+### Visual Cues
 
 The application features a visual background change to differentiate between "Activity" and "Rest" as well as giving an update on the amount of sets remaining
 
