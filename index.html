@@ -7,18 +7,23 @@
   </head>
   <body>
     <div class="container">
-      <h1>HIIT Timer</h1>
-      <p class="status-text">Activity</p>
+      <h1>Quick Start</h1>
+      <p class="status-text">Press Start</p>
       <p class="time" id="time">00:00</p>
+      <p class="sets-text">Sets Remaining</p>
+      <p class="sets" id="sets">0</p>
       <button id="start-btn" class="btn">Start</button>
       <button id="reset-btn" class="btn">Reset</button>
       <div class="advanced-options">
         <button id="expand-btn" class="btn">Advanced Options</button>
         <div id="options-content" class="hidden">
-          <p class="advanced"></p>
-          <span class="minus">-</span>
-          <input type="text" name="set-time" id="set-time" value="30" />
-          <span class="plus">+</span>
+          <p class="advanced">Adjust the default timings</p>
+          <p>Activity Time (seconds)</p>
+          <input type="text" id="set-activity" value="30" />
+          <p>Rest Time (seconds)</p>
+          <input type="text" id="set-rest" value="10" />
+          <p>Number Of Sets</p>
+          <input type="text" id="set-sets" value="5" />
         </div>
       </div>
     </div>

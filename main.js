@@ -1,44 +1,49 @@
 const timerEl = document.querySelector("#time");
+const setsEl = document.querySelector("#sets");
 const statusText = document.querySelector(".status-text");
 const startBtn = document.querySelector("#start-btn");
 const resetBtn = document.querySelector("#reset-btn");
+const setActivity = document.querySelector("#set-activity");
+const setRest = document.querySelector("#set-rest");
+const setSets = document.querySelector("#set-sets");
 
 let isRunning = false;
 let intervalId;
 let timeLeft = 0;
-let activityTime = 30;
-let restTime = 10;
-let totalTime = 7 * 60;
-
 /**
  * Starts the timer for the HIIT workout.
  */
 function startTimer() {
-  if (!isRunning) {
-    isRunning = true;
-    timeLeft = activityTime;
-    document.body.style.backgroundColor = "#ff5722";
+  let activityTime = setActivity.value;
+  let restTime = setRest.value;
+  let sets = setSets.value;
 
-    intervalId = setInterval(() => {
-      timeLeft--;
+  isRunning = true;
+  timeLeft = activityTime;
   statusText.innerText = "Activity";
+  setsEl.innerText = sets;
+  document.body.style.backgroundColor = "#ff5722";
 
-      if (timeLeft <= 0) {
-          document.body.style.backgroundColor = "#007bff";
-          timeLeft = restTime;
-        } else {
-          document.body.style.backgroundColor = "#ff5722";
-          timeLeft = activityTime;
-        }
+  intervalId = setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) {
       if (statusText.innerText === "Activity") {
         statusText.innerText = "Rest";
+        document.body.style.backgroundColor = "#007bff";
+        timeLeft = restTime;
+        sets--;
+        setsEl.innerText = sets;
+      } else {
         statusText.innerText = "Activity";
+        document.body.style.backgroundColor = "#ff5722";
+        timeLeft = activityTime;
       }
-      updateTimer();
-    }, 1000);
-  } else {
-    stopTimer();
-  }
+    }
+    if (sets === 0) {
+      resetTimer();
+    }
+    updateTimer();
+  }, 1000);
 }
 
 /**
