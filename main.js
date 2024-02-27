@@ -44,10 +44,10 @@ function startTimer() {
   }
 }
 
-function stopTimer() {
 /**
  * Resets the timer and sets the initial values.
  */
+function resetTimer() {
   clearInterval(intervalId);
   isRunning = false;
   timeLeft = 0;
