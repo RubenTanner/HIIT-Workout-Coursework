@@ -89,3 +89,8 @@ startBtn.addEventListener("click", () => {
     startBtn.innerText = "Start"; // Change the text back to "Start"
   }
 });
+
+resetBtn.addEventListener("click", () => {
+  resetTimer();
+  startBtn.innerText = "Start";
+});
