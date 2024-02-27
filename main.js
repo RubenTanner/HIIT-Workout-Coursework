@@ -24,8 +24,6 @@ function startTimer() {
       timeLeft--;
 
       if (timeLeft <= 0) {
-        beep.play();
-
         if (statusTextEl.innerText === "Activity") {
           statusTextEl.innerText = "Rest";
           document.body.style.backgroundColor = "#007bff";
@@ -36,7 +34,6 @@ function startTimer() {
           timeLeft = activityTime;
         }
       }
-
       updateTimer();
     }, 1000);
   } else {
