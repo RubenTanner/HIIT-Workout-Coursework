@@ -4,17 +4,14 @@
 
 REMOVE ME: Introduce the key features, paying special attention to the non-code ones. Tell us briefly how to find & use them, and describes the reasons behind the design decisions you made in their implementation.
 
-### Key Feature Name/Description.
+### Quick Start
 
-Words words words. Words words words.
+The quick start feature allows a user to quickly start a preset workout of just time. The user can adjust the default activity and rest time using the "advanced options" tab as well as adjusting the amount of sets.
 
-### Key Another Feature Name/Description.
+### Visual cues
 
-Words words. Words words words.
+The application features a visual background change to differentiate between "Activity" and "Rest" as well as giving an update on the amount of sets remaining
 
-Words words words words. Words words words.
-
-Words words words words words. Words.
 
 ### Final Key Feature Name/Description.
 
