@@ -7,6 +7,7 @@ const resetBtn = document.querySelector("#reset-btn");
 const setActivity = document.querySelector("#set-activity");
 const setRest = document.querySelector("#set-rest");
 const setSets = document.querySelector("#set-sets");
+const expandBtn = document.querySelector("#expand-btn");
 
 let isRunning = false;
 let interval;
@@ -96,4 +97,14 @@ startBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", () => {
   resetTimer();
   startBtn.innerText = "Start";
+});
+
+expandBtn.addEventListener("click", function () {
+  this.classList.toggle("active");
+  let content = this.nextElementSibling;
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+  }
 });
