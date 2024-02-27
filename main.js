@@ -1,3 +1,4 @@
+// DOM ELEMENTS
 const timerEl = document.querySelector("#time");
 const setsEl = document.querySelector("#sets");
 const setsSection = document.querySelector(".sets-section");
@@ -16,9 +17,9 @@ let timeLeft = 0;
  * Starts the timer for the HIIT workout.
  */
 function startTimer() {
-  let activityTime = setActivity.value;
-  let restTime = setRest.value;
-  let sets = setSets.value;
+  const activityTime = parseInt(setActivity.value);
+  const restTime = parseInt(setRest.value);
+  let sets = parseInt(setSets.value);
 
   isRunning = true;
   timeLeft = activityTime;
