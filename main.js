@@ -10,6 +10,9 @@ let activityTime = 30;
 let restTime = 10;
 let totalTime = 7 * 60;
 
+/**
+ * Starts the timer for the HIIT workout.
+ */
 function startTimer() {
   if (!isRunning) {
     isRunning = true;
@@ -42,6 +45,9 @@ function startTimer() {
 }
 
 function stopTimer() {
+/**
+ * Resets the timer and sets the initial values.
+ */
   clearInterval(intervalId);
   isRunning = false;
   timeLeft = 0;
@@ -50,6 +56,9 @@ function stopTimer() {
   document.body.style.backgroundColor = "#f5f5f5";
 }
 
+/**
+ * Updates the timer display with the remaining time.
+ */
 function updateTimer() {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
@@ -58,6 +67,9 @@ function updateTimer() {
     .padStart(2, "0")}`;
 }
 
+/**
+ * Pauses the timer if it is currently running.
+ */
 function pauseTimer() {
   if (isRunning) {
     clearInterval(intervalId);
@@ -65,6 +77,9 @@ function pauseTimer() {
   }
 }
 
+/**
+ * Names the workout.
+ */
 startBtn.addEventListener("click", () => {
   if (!isRunning) {
     startTimer();
