@@ -9,6 +9,7 @@ const setActivity = document.querySelector("#set-activity");
 const setRest = document.querySelector("#set-rest");
 const setSets = document.querySelector("#set-sets");
 const expandBtn = document.querySelector("#expand-btn");
+const options = document.querySelector(".advanced-options");
 
 let isRunning = false;
 let interval;
@@ -21,6 +22,7 @@ function startTimer() {
   const restTime = parseInt(setRest.value);
   let sets = parseInt(setSets.value);
 
+  options.style.display = "none";
   isRunning = true;
   timeLeft = activityTime;
   statusText.innerText = "Activity";
@@ -61,6 +63,8 @@ function resetTimer() {
   statusText.innerText = "Press Start";
   timerEl.innerText = "00:00";
   document.body.style.backgroundColor = "#f5f5f5";
+
+  options.style.display = "block";
 }
 
 /**
