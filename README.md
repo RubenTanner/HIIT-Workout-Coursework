@@ -10,7 +10,6 @@ The quick start feature allows a user to quickly start a preset workout of just 
 
 The application features a visual background change to differentiate between "Activity" and "Rest" as well as giving an update on the amount of sets remaining
 
-
 ### Final Key Feature Name/Description.
 
 Words.
