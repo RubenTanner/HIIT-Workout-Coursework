@@ -22,12 +22,12 @@ to help me generate ideas for how to achieve the feature for record keeping and 
 
 _I used this prompt:_
 
-> I have an application that users can design workouts. i want them to be able to save their workouts and be able to use them across sessions. I DO NOT want a login/sign up system. i want the user to be able to leave the website and still be able to access their history so no local storage.
+> I have an application that users can design workouts. i want them to be able to save their workouts and be able to use them across sessions. I DO NOT want a login/sign up system. i want the user to be able to leave the website and still be able to access their history.
 > How could I achieve this?
 
 _The response:_
 
-> To achieve this without requiring users to sign up or log in, and without relying on local storage, you can implement a solution using browser cookies or browser-based storage mechanisms. Here's how you could approach it:
+> To achieve this without requiring users to sign up or log in, you can implement a solution using browser cookies or browser-based storage mechanisms. Here's how you could approach it:
 >
 > - **Generate a Unique Identifier**: When a user creates a workout, generate a unique identifier (such as a UUID or a random string) for that workout.
 >
@@ -41,4 +41,8 @@ _The response:_
 >
 > - **Expiration and Clean up**: You may want to implement mechanisms for cookie expiration or clean up of old workout data on the server to manage the user's workout history over time.
 >
-> By implementing this approach, users can access their workout history across sessions without needing to log in or rely on local storage. However, it's important to consider privacy and security implications, such as ensuring that workout data is stored securely on your server and that the cookie mechanism complies with relevant regulations and best practices.
+> By implementing this approach, users can access their workout history across sessions without needing to log in. However, it's important to consider privacy and security implications, such as ensuring that workout data is stored securely on your server and that the cookie mechanism complies with relevant regulations and best practices.
+
+This prompt proved to be pretty useless, cookies are the wrong approach in my opinion (and i just couldn't understand the documentation at all)
+
+This did give me good ideas with how i may be able to keep track of users however, I instead started to develop a system to assign a user a Unique ID and store that information in local storage, this will the be stored with the users workout details to the database (CURRENTLY WORK IN PROGRESS)
