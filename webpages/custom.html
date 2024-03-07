@@ -27,13 +27,51 @@
       <section class="advanced-options">
         <button id="expand-btn" class="btn">Options</button>
         <section class="options-content">
-          <p class="advanced">Adjust the default timings</p>
-          <p>Activity Time (seconds)</p>
-          <input type="text" id="set-activity" value="30" />
-          <p>Rest Time (seconds)</p>
-          <input type="text" id="set-rest" value="10" />
-          <p>Number Of Sets</p>
-          <input type="text" id="set-sets" value="5" />
+          <section id="form" action="" method="POST">
+            <section id="workout-list" class="input-field">
+              <section class="workout-input">
+                <input
+                  class="input-field"
+                  type="text"
+                  id="set-name"
+                  placeholder="Name"
+                  required
+                />
+                <input
+                  class="input-field"
+                  type="text"
+                  id="set-description"
+                  placeholder="Description"
+                  required
+                />
+                <input
+                  class="input-field"
+                  type="number"
+                  id="set-activity"
+                  placeholder="Activity"
+                  required
+                />
+                <input
+                  class="input-field"
+                  type="number"
+                  name="set-rest"
+                  placeholder="Rest"
+                  required
+                />
+                <input
+                  class="input-field"
+                  type="number"
+                  name="set-sets"
+                  placeholder="Sets"
+                  required
+                />
+                <button class="add-workout-btn" type="button">
+                  Add Another Workout
+                </button>
+              </section>
+            </section>
+            <button class="save-workout-btn" type="submit">SUBMIT</button>
+          </section>
         </section>
       </section>
     </section>
