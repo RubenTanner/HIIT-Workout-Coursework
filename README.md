@@ -17,6 +17,9 @@ Words.
 ## AI
 
 ### Idea generation for Record keeping and Storing Workouts
+## Use Of AI
+
+### Idea generation for Record keeping and Storing Workouts (chatGPT 3.5)
 
 to help me generate ideas for how to achieve the feature for record keeping and saving workouts WITHOUT a login and sign up feature I asked ChatGPT for suggestions
 
@@ -46,3 +49,31 @@ _The response:_
 This prompt proved to be pretty useless, cookies are the wrong approach in my opinion (and i just couldn't understand the documentation at all)
 
 This did give me good ideas with how i may be able to keep track of users however, I instead started to develop a system to assign a user a Unique ID and store that information in local storage, this will the be stored with the users workout details to the database (CURRENTLY WORK IN PROGRESS)
+
+### Help in recommending changes to colour choices (chatGPT 3.5)
+
+I found my choice in colours for my activity and rest to be a bit oppressive and could be quite hard on the eyes, i also wanted to implement a warm up and cool down section (as a tick box) for the user to toggle and wanted some recommendations for colours i could use
+
+_this is the prompt i used:_
+
+> I'm currently using #ff5722 as my activity colour, and #007bff as my rest colour, i'm finding them a bit offensive to look at, and can make it hard to read the black text explaining the routine, can you recommend any other colours for me to use instead that will contrast well with black text. And can you also recommend another colour for "Warm up" and "cool down" it can be the same colour.
+
+_the response:_
+
+> Sure, I can suggest some alternative colors for your activity and rest colors, as well as a color for "Warm up" and "Cool down" that will contrast well with black text.
+>
+> For your activity color, you might want to try a softer shade that is still distinct but less harsh on the eyes. Consider using a light orange such as #ff8c00 or #ff9900.
+>
+> For your rest color, a lighter shade of blue could be less offensive and easier to read. You might try #66b3ff or #3399ff.
+>
+> As for the "Warm up" and "Cool down" colors, you can opt for a calming color that complements both the activity and rest colors. A light green like #66ff66 or #99ff99 could work well for this purpose.
+>
+> Here's a summary of the recommended colors:
+>
+> - Activity Color: #ff8c00 or #ff9900 (light orange)
+> - Rest Color: #66b3ff or #3399ff (light blue)
+> - Warm up/Cool down Color: #66ff66 or #99ff99 (light green)
+>
+> These colors should provide good contrast with black text and be easier on the eyes while still maintaining clarity and distinction. Feel free to adjust the shades if needed to better suit your preferences.
+
+I liked these recommendations and implemented the new colour scheme using #ff9900 and #66b3ff as I found them to be the easiest to look at
