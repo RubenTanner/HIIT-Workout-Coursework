@@ -10,13 +10,14 @@ The quick start feature allows a user to quickly start a preset workout of just 
 
 The application features a visual background change to differentiate between "Activity" and "Rest" as well as giving an update on the amount of sets remaining
 
-### Final Key Feature Name/Description.
+The Visual queues also indicate warm up/cool down times at the end of a complete workout
 
-Words.
+### Custom HIIT Workout
 
-## AI
+I have also created another page, with the same styling as the **Quick Start** feature. This allows the user to create their own workouts, including a custom title (to replace "Activity" which would normally display), a description of the workout, the ability to adjust individual workouts activity and rest time, the ability to adjust how many sets are there for each individual workout.
 
-### Idea generation for Record keeping and Storing Workouts
+This can be found by pressing the "Custom" button on the **Quick Start** page found below the Options button
+
 ## Use Of AI
 
 ### Idea generation for Record keeping and Storing Workouts (chatGPT 3.5)
