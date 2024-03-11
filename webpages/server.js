@@ -25,13 +25,13 @@ function saveWorkout(req, res) {
 }
 
 function editWorkout(req, res) {
-  const workout = wrk.editMessage(req.body);
+  const workout = wrk.editWorkout(req.body);
   res.json(workout);
 }
 
-app.get("/messages", getWorkouts);
-app.get("/messages/:id", getWorkout);
-app.post("/messages", express.json(), saveWorkout);
-app.put("/messages/:id", express.json(), editWorkout);
+app.get("/Workouts", getWorkouts);
+app.get("/Workouts/:id", getWorkout);
+app.post("/Workouts", express.json(), saveWorkout);
+app.put("/Workouts/:id", express.json(), editWorkout);
 
 app.listen(8080);

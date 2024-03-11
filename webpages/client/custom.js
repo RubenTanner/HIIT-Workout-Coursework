@@ -57,20 +57,20 @@ function startTimer() {
   statusText.innerText = currentWorkout.name;
   setsEl.innerText = sets;
   setsSection.style.display = "block";
-  document.body.style.backgroundColor = "#ff5722";
+  document.body.style.backgroundColor = "#ff9900";
 
   interval = setInterval(() => {
     timeLeft--;
     if (timeLeft <= 0) {
       if (statusText.innerText === "Activity") {
         statusText.innerText = "Rest";
-        document.body.style.backgroundColor = "#007bff";
+        document.body.style.backgroundColor = "#66b3ff";
         timeLeft = restTime;
         sets--;
         setsEl.innerText = sets;
       } else {
         statusText.innerText = "Activity";
-        document.body.style.backgroundColor = "#ff5722";
+        document.body.style.backgroundColor = "#ff9900";
         timeLeft = activityTime;
       }
     }
