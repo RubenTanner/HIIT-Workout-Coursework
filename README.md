@@ -1,10 +1,22 @@
 # HIIT UP2109969
 
+## FAO PROTOTYPE SUBMISSION
+
+while i'm happy with my current progress i would like to draw your attention towards the Custom section. THIS CURRENTLY ISN'T FULLY FUNCTIONAL. But i hope by reviewing the code and the plan below you can get some idea where im going
+
+#### current working plan
+
+creating custom workouts (not worrying about storing just yet just want it to work)
+
+Using local storage i am creating a unique user ID that will be stored on a database (currently no database setup, will come later when i go back and review how to do it)
+
 ## Key features
 
 ### Quick Start
 
-The quick start feature allows a user to quickly start a preset workout of just time. The user can adjust the default activity and rest time using the "advanced options" tab as well as adjusting the amount of sets.
+The quick start feature allows a user to quickly start a preset workout of just time. The user can adjust the default activity and rest time using the "Options" tab as well as adjusting the amount of sets.
+
+The user can also select if they want to include a preset warm up and cool down section, this is 60 seconds each and cannot be changed
 
 ### Visual Cues
 
@@ -17,6 +29,13 @@ The Visual queues also indicate warm up/cool down times at the end of a complete
 I have also created another page, with the same styling as the **Quick Start** feature. This allows the user to create their own workouts, including a custom title (to replace "Activity" which would normally display), a description of the workout, the ability to adjust individual workouts activity and rest time, the ability to adjust how many sets are there for each individual workout.
 
 This can be found by pressing the "Custom" button on the **Quick Start** page found below the Options button
+
+### responsive design
+
+I have tried (and semi succeeded) to make the application as accessible as possible, using larger buttons so its easier to press on phones, and using c
+CSS FlexBox so styles are consistent on phone and pc. Using FireFox's Responsive Design Mode, I have tested my **Quick Start** section and its proved to be displaying well
+
+[Have a look at this screenshot!](/README-images/Screenshot%202024-03-11%20at%2016.54.37.png "Responsive Design Mode For Quick Start Page")
 
 ## Use Of AI
 
@@ -77,4 +96,6 @@ _the response:_
 >
 > These colors should provide good contrast with black text and be easier on the eyes while still maintaining clarity and distinction. Feel free to adjust the shades if needed to better suit your preferences.
 
-I liked these recommendations and implemented the new colour scheme using #ff9900 and #66b3ff as I found them to be the easiest to look at
+I liked these recommendations and implemented the new colour scheme using #ff9900 and #66b3ff as I found them to be the easiest to look at _(see this commit https://github.com/RubenTanner/HIIT-Workout-Coursework/commit/78f2c90dadc56922637a244b7f15ffa2eb9eeafa)_
+
+##### _(the repo is currently private if you wish to gain access please message me on Discord -> phatyikes)_
