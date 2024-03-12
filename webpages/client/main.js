@@ -10,6 +10,7 @@ const setRest = document.querySelector("#set-rest");
 const setSets = document.querySelector("#set-sets");
 const expandBtn = document.querySelector("#expand-btn");
 const options = document.querySelector(".advanced-options");
+const expandOptions = document.querySelector(".options-content");
 
 let isRunning = false;
 let interval;
@@ -105,11 +106,9 @@ resetBtn.addEventListener("click", () => {
 });
 
 expandBtn.addEventListener("click", function () {
-  this.classList.toggle("active");
-  let content = this.nextElementSibling;
-  if (content.style.maxHeight) {
-    content.style.maxHeight = null;
+  if (expandOptions.style.display === "none") {
+    expandOptions.style.display = "block";
   } else {
-    content.style.maxHeight = content.scrollHeight + "px";
+    expandOptions.style.display = "none";
   }
 });

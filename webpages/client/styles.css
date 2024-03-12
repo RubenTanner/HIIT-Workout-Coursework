@@ -90,9 +90,6 @@ input {
 .options-content {
   padding: 0 18px;
   margin-top: 1rem;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
 }
 
 .input-plus {

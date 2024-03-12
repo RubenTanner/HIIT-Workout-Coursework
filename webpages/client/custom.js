@@ -6,6 +6,7 @@ const statusText = document.querySelector(".status-text");
 const startBtn = document.querySelector("#start-btn");
 const resetBtn = document.querySelector("#reset-btn");
 const expandBtn = document.querySelector("#expand-btn");
+const expandOptions = document.querySelector(".options-content");
 const options = document.querySelector(".advanced-options");
 const activityForm = document.querySelector("#workout-list");
 const addWorkoutBtn = document.querySelector(".add-workout-btn");
@@ -225,11 +226,9 @@ resetBtn.addEventListener("click", () => {
 });
 
 expandBtn.addEventListener("click", function () {
-  this.classList.toggle("active");
-  let content = this.nextElementSibling;
-  if (content.style.maxHeight) {
-    content.style.maxHeight = null;
+  if (expandOptions.style.display === "none") {
+    expandOptions.style.display = "block";
   } else {
-    content.style.maxHeight = content.scrollHeight + "px";
+    expandOptions.style.display = "none";
   }
 });
