@@ -1,6 +1,7 @@
 let workouts = [
   {
-    id: 1234,
+    usr_id: 1234,
+    wkr_id: 5678,
     name: "Workout Title",
     description: "This is my description",
     activity: 30,
