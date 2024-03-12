@@ -30,12 +30,20 @@ I have also created another page, with the same styling as the **Quick Start** f
 
 This can be found by pressing the "Custom" button on the **Quick Start** page found below the Options button
 
-### responsive design
+### Responsive design
 
 I have tried (and semi succeeded) to make the application as accessible as possible, using larger buttons so its easier to press on phones, and using c
 CSS FlexBox so styles are consistent on phone and pc. Using FireFox's Responsive Design Mode, I have tested my **Quick Start** section and its proved to be displaying well
 
-[Have a look at this screenshot!](/README-images/Screenshot%202024-03-11%20at%2016.54.37.png "Responsive Design Mode For Quick Start Page")
+**[Have a look at this screenshot!](/README-images/Screenshot%202024-03-11%20at%2016.54.37.png)**
+
+### Source Control
+
+While not a key feature per say, it has been incredibly important during the development to know what im focused on, and if I hit a wall on one area it means I can go to a separate development area without effecting the working branch.
+
+I'm using GitHub to host my work, its a private repo so if you do want access please message me on discord -> phatyikes
+
+The link to the repo -> **[here](https://github.com/RubenTanner/HIIT-Workout-Coursework)**
 
 ## Use Of AI
 
