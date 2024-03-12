@@ -6,9 +6,11 @@ while i'm happy with my current progress i would like to draw your attention tow
 
 #### current working plan
 
-creating custom workouts (not worrying about storing just yet just want it to work)
+Creating custom workouts (not worrying about storing just yet just want it to work)
 
 Using local storage i am creating a unique user ID that will be stored on a database (currently no database setup, will come later when i go back and review how to do it)
+
+Add a database to replace the current use of workouts.js `let workouts = [...]` area
 
 ## Key features
 
@@ -35,7 +37,7 @@ This can be found by pressing the "Custom" button on the **Quick Start** page fo
 I have tried (and semi succeeded) to make the application as accessible as possible, using larger buttons so its easier to press on phones, and using c
 CSS FlexBox so styles are consistent on phone and pc. Using FireFox's Responsive Design Mode, I have tested my **Quick Start** section and its proved to be displaying well
 
-**[Have a look at this screenshot!](/README-images/Screenshot%202024-03-11%20at%2016.54.37.png)**
+![Have a look at this screenshot!](/README-images/Screenshot%202024-03-11%20at%2016.54.37.png)
 
 ### Source Control
 
@@ -44,6 +46,8 @@ While not a key feature per say, it has been incredibly important during the dev
 I'm using GitHub to host my work, its a private repo so if you do want access please message me on discord -> phatyikes
 
 The link to the repo -> **[here](https://github.com/RubenTanner/HIIT-Workout-Coursework)**
+
+![All Commits are named](/README-images/Screenshot%202024-03-12%20at%2009.16.58.png "Commits")
 
 ## Use Of AI
 
