@@ -5,17 +5,17 @@ const setsSection = document.querySelector(".sets-section");
 const statusText = document.querySelector(".status-text");
 const startBtn = document.querySelector("#start-btn");
 const resetBtn = document.querySelector("#reset-btn");
-const setActivity = document.querySelector("#set-activity");
-const setRest = document.querySelector("#set-rest");
-const setSets = document.querySelector("#set-sets");
 const expandBtn = document.querySelector("#expand-btn");
 const options = document.querySelector(".advanced-options");
 const activityForm = document.querySelector("#workout-list");
 const addWorkoutBtn = document.querySelector(".add-workout-btn");
 const deleteWorkoutBtn = document.querySelector(".delete-workout-btn");
 const saveWorkoutBtn = document.querySelector(".save-workout-btn");
-// const setName = document.querySelector("#set-name");
-// const setDescription = document.querySelector("#set-description");
+const setName = document.querySelector("#set-name");
+const setDescription = document.querySelector("#set-description");
+const setActivity = document.querySelector("#set-activity");
+const setRest = document.querySelector("#set-rest");
+const setSets = document.querySelector("#set-sets");
 const currentWorkout = document.querySelector("#current-workout");
 
 let isRunning = false;
@@ -23,11 +23,13 @@ let interval;
 let timeLeft = 0;
 
 function createWorkout() {
-  let activityName = setName.value;
-  let activityDescription = setDescription.value;
   let workout = {
-    name: activityName,
-    description: activityDescription,
+    usr_id: getUserClientId(),
+    wrk_id: generateId(),
+    name: setName.value,
+    description: setDescription.value,
+    activity: setActivity.value,
+    rest: setRest.value,
     sets: setSets.value,
   };
 }
