@@ -23,14 +23,18 @@ export function findWorkout(wkr_id) {
   return null;
 }
 
-export function addWorkout(workout) {
-  if (workout.trim() === "") return workouts;
+export function addWorkout(workout, usr_id) {
   const newWorkout = {
-    id: uuid(),
-    time: Date(),
-    msg,
+    usr_id: usr_id,
+    wkr_id: workout.wrk_id,
+    name: workout.name,
+    description: workout.description,
+    activity: parseInt(workout.activity),
+    rest: parseInt(workout.rest),
+    sets: parseInt(workout.sets),
   };
-  workouts = [newWorkout, ...workouts.slice(0, 9)];
+  workouts = [newWorkout, ...workouts];
+  console.log("workouts", workouts);
   return workouts;
 }
 

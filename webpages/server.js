@@ -20,7 +20,11 @@ function getWorkout(req, res) {
 }
 
 function saveWorkout(req, res) {
-  const workouts = wrk.addWorkout(req.body.msg);
+  const usr_id = req.params.id;
+  const workout = req.body;
+
+  const workouts = wrk.addWorkout(workout, usr_id);
+
   res.json(workouts);
 }
 

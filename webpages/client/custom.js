@@ -23,18 +23,6 @@ let isRunning = false;
 let interval;
 let timeLeft = 0;
 
-function createWorkout() {
-  let workout = {
-    usr_id: getUserClientId(),
-    wrk_id: generateId(),
-    name: setName.value,
-    description: setDescription.value,
-    activity: setActivity.value,
-    rest: setRest.value,
-    sets: setSets.value,
-  };
-}
-
 function generateId() {
   return Math.random().toString(36).substr(2, 9);
 }
@@ -45,6 +33,29 @@ function setUserClientId() {
 
 function getUserClientId() {
   return localStorage.getItem("clientId");
+}
+
+async function createWorkout() {
+  const workout = {
+    wrk_id: generateId(),
+    name: setName.value,
+    description: setDescription.value,
+    activity: setActivity.value,
+    rest: setRest.value,
+    sets: setSets.value,
+  };
+
+  const response = await fetch(`../Workouts/${getUserClientId()}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(workout),
+  });
+
+  if (response.ok) {
+    console.log("message sent successfully", response);
+  } else {
+    console.log("failed to send message", response);
+  }
 }
 /**
  * Starts the timer for the HIIT workout.
@@ -230,5 +241,17 @@ expandBtn.addEventListener("click", function () {
     expandOptions.style.display = "block";
   } else {
     expandOptions.style.display = "none";
+  }
+});
+
+saveWorkoutBtn.addEventListener("click", createWorkout);
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (getUserClientId()) {
+    getUserClientId();
+    console.log("Client ID", getUserClientId());
+  } else {
+    setUserClientId();
+    console.log("Client ID", getUserClientId());
   }
 });
