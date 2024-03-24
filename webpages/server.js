@@ -30,8 +30,8 @@ function editWorkout(req, res) {
 }
 
 app.get("/Workouts", getWorkouts);
-app.get("/Workouts/:id", getWorkout);
-app.post("/Workouts", express.json(), saveWorkout);
+app.get("/Workouts/:usr_id", getWorkout);
+app.post("/Workouts/:id", express.json(), saveWorkout);
 app.put("/Workouts/:id", express.json(), editWorkout);
 
 app.listen(8080);
