@@ -19,13 +19,15 @@ function getWorkout(req, res) {
   }
 }
 
-function saveWorkout(req, res) {
+function saveWorkouts(req, res) {
   const usr_id = req.params.id;
-  const workout = req.body;
+  const workouts = req.body.workouts;
 
-  const workouts = wrk.addWorkout(workout, usr_id);
+  const savedWorkouts = workouts.map((workout) =>
+    wrk.addWorkout(workout, usr_id)
+  );
 
-  res.json(workouts);
+  res.json(savedWorkouts);
 }
 
 function editWorkout(req, res) {
@@ -35,7 +37,7 @@ function editWorkout(req, res) {
 
 app.get("/Workouts", getWorkouts);
 app.get("/Workouts/:usr_id", getWorkout);
-app.post("/Workouts/:id", express.json(), saveWorkout);
+app.post("/Workouts/:id", express.json(), saveWorkouts);
 app.put("/Workouts/:id", express.json(), editWorkout);
 
 app.listen(8080);

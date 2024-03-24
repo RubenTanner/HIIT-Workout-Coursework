@@ -29,13 +29,13 @@ export function addWorkout(workout, usr_id) {
     wkr_id: workout.wrk_id,
     name: workout.name,
     description: workout.description,
-    activity: parseInt(workout.activity),
-    rest: parseInt(workout.rest),
-    sets: parseInt(workout.sets),
+    activity: parseInt(workout.activity), // Corrected here
+    rest: parseInt(workout.rest), // And here
+    sets: parseInt(workout.sets), // And here
   };
   workouts = [newWorkout, ...workouts];
   console.log("workouts", workouts);
-  return workouts;
+  return newWorkout;
 }
 
 export function editWorkout(updatedWorkout) {

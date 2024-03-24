@@ -10,7 +10,6 @@ const expandOptions = document.querySelector(".options-content");
 const options = document.querySelector(".advanced-options");
 const activityForm = document.querySelector("#workout-list");
 const addWorkoutBtn = document.querySelector(".add-workout-btn");
-const deleteWorkoutBtn = document.querySelector(".delete-workout-btn");
 const saveWorkoutBtn = document.querySelector(".save-workout-btn");
 const setName = document.querySelector("#set-name");
 const setDescription = document.querySelector("#set-description");
@@ -36,21 +35,15 @@ function getUserClientId() {
 }
 
 async function createWorkout() {
-  const workout = {
-    wrk_id: generateId(),
-    name: setName.value,
-    description: setDescription.value,
-    activity: setActivity.value,
-    rest: setRest.value,
-    sets: setSets.value,
-  };
+  const workouts = collectWorkouts();
+
+  console.log("workouts", workouts);
 
   const response = await fetch(`../Workouts/${getUserClientId()}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(workout),
+    body: JSON.stringify({ workouts }),
   });
-
   if (response.ok) {
     console.log("message sent successfully", response);
   } else {
@@ -132,76 +125,53 @@ function pauseTimer() {
   }
 }
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   output = document.querySelector("code");
-
-//   if (getUserClientId()) {
-//     getUserClientId();
-//   } else {
-//     setUserClientId();
-//   }
-// });
-
 function addWorkoutField() {
-  // Create elements
   const section = document.createElement("section");
-  const name = document.createElement("input");
-  const description = document.createElement("input");
-  const activity = document.createElement("input");
-  const rest = document.createElement("input");
-  const sets = document.createElement("input");
-  const btnAdd = document.createElement("button");
-  const btnDel = document.createElement("button");
-
-  // Add Classes to the section
   section.classList.add("workout-input");
-  // Generate a unique ID for the workout
-  const workoutId = generateId();
 
-  // Add the ID to the section element
-  section.dataset.workoutId = workoutId;
+  const name = document.createElement("input");
+  name.type = "text";
+  name.classList.add("input-field", "set-name");
+  name.placeholder = "Name";
+  name.required = true;
 
-  // set button DEL
+  // Create description input
+  const description = document.createElement("input");
+  description.type = "text";
+  description.classList.add("input-field", "set-description");
+  description.placeholder = "Description";
+  description.required = true;
+
+  // Create activity input
+  const activity = document.createElement("input");
+  activity.type = "number";
+  activity.classList.add("input-field", "set-activity");
+  activity.placeholder = "Activity (minutes)";
+  activity.required = true;
+
+  // Create rest input
+  const rest = document.createElement("input");
+  rest.type = "number";
+  rest.classList.add("input-field", "set-rest");
+  rest.placeholder = "Rest (minutes)";
+  rest.required = true;
+
+  // Create sets input
+  const sets = document.createElement("input");
+  sets.type = "number";
+  sets.classList.add("input-field", "set-sets");
+  sets.placeholder = "Sets";
+  sets.required = true;
+
+  // Create delete button
+  const btnDel = document.createElement("button");
   btnDel.type = "button";
   btnDel.classList.add("del-workout-btn");
   btnDel.innerText = "Remove";
+  btnDel.addEventListener("click", function () {
+    section.remove();
+  });
 
-  // set name
-  name.type = "text";
-  name.id = "set-name";
-  name.placeholder = "workout Name";
-  name.setAttribute("required", "");
-  name.classList.add("input-field");
-
-  // set description
-  description.type = "text";
-  description.id = "set-description";
-  description.placeholder = "workout Description";
-  description.setAttribute("required", "");
-  description.classList.add("input-field");
-
-  // set activity
-  activity.type = "number";
-  activity.id = "set-activity";
-  activity.placeholder = "Activity";
-  activity.setAttribute("required", "");
-  activity.classList.add("input-field");
-
-  // set rest
-  rest.type = "number";
-  rest.id = "set-rest";
-  rest.placeholder = "Rest";
-  rest.setAttribute("required", "");
-  rest.classList.add("input-field");
-
-  // set sets
-  sets.type = "number";
-  sets.id = "set-sets";
-  sets.placeholder = "Sets";
-  sets.setAttribute("required", "");
-  sets.classList.add("input-field");
-
-  //append elements to main section
   section.appendChild(name);
   section.appendChild(description);
   section.appendChild(activity);
@@ -209,9 +179,34 @@ function addWorkoutField() {
   section.appendChild(sets);
   section.appendChild(btnDel);
 
-  // append element to DOM
   activityForm.appendChild(section);
-  btnDel.addEventListener("click", removeWorkoutField);
+}
+
+function collectWorkouts() {
+  const workoutSections = document.querySelectorAll(".workout-input");
+  const workouts = Array.from(workoutSections)
+    .map((section) => {
+      const name = section.querySelector(".set-name");
+      const description = section.querySelector(".set-description");
+      const activity = section.querySelector(".set-activity");
+      const rest = section.querySelector(".set-rest");
+      const sets = section.querySelector(".set-sets");
+
+      // Only construct a workout object if all elements are found
+      if (name && description && activity && rest && sets) {
+        return {
+          wrk_id: generateId(),
+          name: name.value,
+          description: description.value,
+          activity: section.querySelector(".set-activity").value,
+          rest: section.querySelector(".set-rest").value,
+          sets: section.querySelector(".set-sets").value,
+        };
+      }
+      return null;
+    })
+    .filter((workout) => workout !== null); // Filter out any nulls that may have been added
+  return workouts;
 }
 
 addWorkoutBtn.addEventListener("click", addWorkoutField);
@@ -246,12 +241,9 @@ expandBtn.addEventListener("click", function () {
 
 saveWorkoutBtn.addEventListener("click", createWorkout);
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (getUserClientId()) {
-    getUserClientId();
-    console.log("Client ID", getUserClientId());
-  } else {
+document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("clientId")) {
     setUserClientId();
-    console.log("Client ID", getUserClientId());
   }
+  console.log("Client ID", getUserClientId());
 });
