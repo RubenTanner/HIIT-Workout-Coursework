@@ -14,9 +14,9 @@ export function listWorkouts() {
   return workouts;
 }
 
-export function findWorkout(id) {
+export function findWorkout(wkr_id) {
   for (const workout of workouts) {
-    if (workout.id === id) {
+    if (workout.wkr_id === wkr_id) {
       return workout;
     }
   }
@@ -39,8 +39,11 @@ export function editWorkout(updatedWorkout) {
   if (storedWorkout == null) throw new Error("Workout not found");
 
   // update old workout in place
-  storedWorkout.time = Date();
-  storedWorkout.msg = updatedWorkout.msg;
+  storedWorkout.name = updatedWorkout.name;
+  storedWorkout.description = updatedWorkout.description;
+  storedWorkout.activity = updatedWorkout.activity;
+  storedWorkout.rest = updatedWorkout.rest;
+  storedWorkout.sets = updatedWorkout.sets;
 
   return storedWorkout;
 }
