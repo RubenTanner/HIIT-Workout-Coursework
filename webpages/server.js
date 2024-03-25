@@ -33,7 +33,7 @@ function saveWorkouts(req, res) {
 }
 
 app.get("/Workouts/:id", getWorkouts);
-app.get("/Workouts/:id", getWorkout);
+app.get("/Workout/:id", getWorkout);
 app.post("/Workouts/:id", express.json(), saveWorkouts);
 
 app.listen(8080);
