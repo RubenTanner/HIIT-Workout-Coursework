@@ -1,18 +1,42 @@
-# HIIT UP2109969
+# UP2109969
 
-## FAO PROTOTYPE SUBMISSION
+## HIIT Coursework
 
-while i'm happy with my current progress i would like to draw your attention towards the Custom section. THIS CURRENTLY ISN'T FULLY FUNCTIONAL. But i hope by reviewing the code and the plan below you can get some idea where im going
+### How to Start/Install
 
-#### current working plan
+To start the application, follow these steps:
 
-Creating custom workouts (not worrying about storing just yet just want it to work)
+1. Make sure you have Node.js and npm installed on your machine. If not, you can download and install them from the official Node.js website.
 
-Using local storage i am creating a unique user ID that will be stored on a database (currently no database setup, will come later when i go back and review how to do it)
+2. Clone the repository to your local machine using the following command:
 
-Add a database to replace the current use of workouts.js `let workouts = [...]` area
+   ```bash
+   git clone https://github.com/RubenTanner/HIIT-Workout-Coursework.git
+   ```
 
-## Key features
+3. Navigate to the project directory:
+
+   ```bash
+   cd HIIT-Workout-Coursework
+   ```
+
+4. Install the dependencies by running the following command:
+
+   ```bash
+   npm install
+   ```
+
+5. Once the dependencies are installed, you can start the application with the following command:
+
+   ```bash
+   npm start
+   ```
+
+6. Open your web browser and navigate to `http://localhost:8080/index.html` to access the homepage of the application.
+
+That's it! You have successfully started the application and can now use it to create and manage your HIIT workouts.
+
+## Key feature
 
 ### Quick Start
 
@@ -37,7 +61,7 @@ This can be found by pressing the "Custom" button on the **Quick Start** page fo
 I have tried (and semi succeeded) to make the application as accessible as possible, using larger buttons so its easier to press on phones, and using c
 CSS FlexBox so styles are consistent on phone and pc. Using FireFox's Responsive Design Mode, I have tested my **Quick Start** section and its proved to be displaying well
 
-![Have a look at this screenshot!](/README-images/Screenshot%202024-03-11%20at%2016.54.37.png)
+![Quick Start](/README-images/Screenshot%202024-03-11%20at%2016.54.37.png "Quick Start")
 
 ### Source Control
 
@@ -47,7 +71,15 @@ I'm using GitHub to host my work, its a private repo so if you do want access pl
 
 The link to the repo -> **[here](https://github.com/RubenTanner/HIIT-Workout-Coursework)**
 
-![All Commits are named](/README-images/Screenshot%202024-03-12%20at%2009.16.58.png "Commits")
+1. All Commits are named
+   ![Commits](/README-images/Screenshot%202024-03-12%20at%2009.16.58.png "Commits")
+
+2. I use github issues to track things not working
+   ![Issues](/README-images/Screenshot%202024-03-25%20at%2011.28.07.png "Issues")
+
+3. I even PR my work to review what ive done
+   ![Pull Requests](/README-images/Screenshot%202024-03-25%20at%2011.30.41.png "Pull Requests")
+   _I even denied this Pull request due to an issue i found (and raised in issues)_
 
 ## Use Of AI
 
