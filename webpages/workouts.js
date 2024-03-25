@@ -37,17 +37,3 @@ export function addWorkout(workout, usr_id) {
   console.log("workouts", workouts);
   return newWorkout;
 }
-
-export function editWorkout(updatedWorkout) {
-  const storedWorkout = findWorkout(updatedWorkout.id);
-  if (storedWorkout == null) throw new Error("Workout not found");
-
-  // update old workout in place
-  storedWorkout.name = updatedWorkout.name;
-  storedWorkout.description = updatedWorkout.description;
-  storedWorkout.activity = updatedWorkout.activity;
-  storedWorkout.rest = updatedWorkout.rest;
-  storedWorkout.sets = updatedWorkout.sets;
-
-  return storedWorkout;
-}

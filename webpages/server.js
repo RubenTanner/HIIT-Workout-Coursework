@@ -7,7 +7,9 @@ const app = express();
 app.use(express.static("client", { extensions: ["html"] }));
 
 function getWorkouts(req, res) {
-  res.json(wrk.listWorkouts());
+  const usr_id = req.params.id;
+  const workouts = wrk.listWorkouts(usr_id);
+  res.json(workouts);
 }
 
 function getWorkout(req, res) {
@@ -30,14 +32,8 @@ function saveWorkouts(req, res) {
   res.json(savedWorkouts);
 }
 
-function editWorkout(req, res) {
-  const workout = wrk.editWorkout(req.body);
-  res.json(workout);
-}
-
-app.get("/Workouts", getWorkouts);
-app.get("/Workouts/:usr_id", getWorkout);
+app.get("/Workouts/:id", getWorkouts);
+app.get("/Workouts/:id", getWorkout);
 app.post("/Workouts/:id", express.json(), saveWorkouts);
-app.put("/Workouts/:id", express.json(), editWorkout);
 
 app.listen(8080);
