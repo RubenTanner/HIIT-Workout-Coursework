@@ -1,17 +1,7 @@
-let workouts = [
-  {
-    usr_id: 1234,
-    wkr_id: 5678,
-    name: "Workout Title",
-    description: "This is my description",
-    activity: 30,
-    rest: 10,
-    sets: 10,
-  },
-];
+let workouts = [];
 
-export function listWorkouts() {
-  return workouts;
+export function listWorkouts(usr_id) {
+  return workouts.filter((workout) => workout.usr_id === usr_id);
 }
 
 export function findWorkout(wkr_id) {
