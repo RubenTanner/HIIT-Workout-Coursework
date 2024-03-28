@@ -1,12 +1,12 @@
 {
   "name": "HIIT-Workout-Coursework",
   "version": "1.0.0",
-  "description": "HIIT timer for 2nd year WebProgramming coursework ",
+  "description": "HIIT timer for 2nd year Web Programming coursework ",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js --watch"
+    "start": "cd webpages && node server"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/RubenTanner/HIIT-Workout-Coursework#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "sqlite": "^4.1.2",
+    "sqlite3": "^5.1.4"
   }
 }

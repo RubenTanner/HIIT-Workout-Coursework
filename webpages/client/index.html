@@ -2,9 +2,27 @@
 <html>
   <head>
     <title>Quick Start</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon_io/site.webmanifest" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../styles.css" />
-    <script type="module" src="../main.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="main.js"></script>
   </head>
   <body>
     <section class="container">
@@ -19,7 +37,7 @@
       <button id="reset-btn" class="btn">Reset</button>
       <section class="advanced-options">
         <button id="expand-btn" class="btn">Options</button>
-        <section class="options-content">
+        <section class="options-content" style="display: none">
           <p class="advanced">Adjust the default timings</p>
           <p>Activity Time (seconds)</p>
           <input type="text" id="set-activity" value="30" />
@@ -27,6 +45,10 @@
           <input type="text" id="set-rest" value="10" />
           <p>Number Of Sets</p>
           <input type="text" id="set-sets" value="5" />
+          <!-- <p>Include Warmup and Cool Down</p>
+          <input type="checkbox" id="warmup" /> -->
+          <p>Want to make a custom HIIT Timer?</p>
+          <a href="custom.html" class="btn">Make Your Own</a>
         </section>
       </section>
     </section>

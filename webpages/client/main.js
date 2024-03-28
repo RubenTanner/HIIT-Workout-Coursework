@@ -10,6 +10,7 @@ const setRest = document.querySelector("#set-rest");
 const setSets = document.querySelector("#set-sets");
 const expandBtn = document.querySelector("#expand-btn");
 const options = document.querySelector(".advanced-options");
+const expandOptions = document.querySelector(".options-content");
 
 let isRunning = false;
 let interval;
@@ -28,20 +29,20 @@ function startTimer() {
   statusText.innerText = "Activity";
   setsEl.innerText = sets;
   setsSection.style.display = "block";
-  document.body.style.backgroundColor = "#ff5722";
+  document.body.style.backgroundColor = "#ff9900";
 
   interval = setInterval(() => {
     timeLeft--;
     if (timeLeft <= 0) {
       if (statusText.innerText === "Activity") {
         statusText.innerText = "Rest";
-        document.body.style.backgroundColor = "#007bff";
+        document.body.style.backgroundColor = "#66b3ff";
         timeLeft = restTime;
         sets--;
         setsEl.innerText = sets;
       } else {
         statusText.innerText = "Activity";
-        document.body.style.backgroundColor = "#ff5722";
+        document.body.style.backgroundColor = "#ff9900";
         timeLeft = activityTime;
       }
     }
@@ -105,11 +106,9 @@ resetBtn.addEventListener("click", () => {
 });
 
 expandBtn.addEventListener("click", function () {
-  this.classList.toggle("active");
-  let content = this.nextElementSibling;
-  if (content.style.maxHeight) {
-    content.style.maxHeight = null;
+  if (expandOptions.style.display === "none") {
+    expandOptions.style.display = "block";
   } else {
-    content.style.maxHeight = content.scrollHeight + "px";
+    expandOptions.style.display = "none";
   }
 });
