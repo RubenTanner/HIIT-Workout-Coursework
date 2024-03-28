@@ -142,4 +142,12 @@ _the response:_
 
 I liked these recommendations and implemented the new colour scheme using #ff9900 and #66b3ff as I found them to be the easiest to look at _(see this commit https://github.com/RubenTanner/HIIT-Workout-Coursework/commit/78f2c90dadc56922637a244b7f15ffa2eb9eeafa)_
 
+### Use of copilot to assist in documentation
+
+i have written my own documentation for the majority of the project, however i struggled explaining functions fully, i ran copilot in an inline chat at the top of each function and used the /doc command.
+
+most functions (such as on main.js) didn't update from what i had already written, but most got extra detail that will aid external users understanding of the source code
+
+This has allowed functions to have more context when hovered over making my code more maintainable on a whole.
+
 ##### _(the repo is currently private if you wish to gain access please message me on Discord -> phatyikes)_

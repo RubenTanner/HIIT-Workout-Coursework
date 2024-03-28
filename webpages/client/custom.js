@@ -32,18 +32,34 @@ let workoutState = {
   currentWorkout: null,
 };
 
+/**
+ * Generates a unique ID.
+ * @returns {string} The generated ID.
+ */
 function generateId() {
   return Math.random().toString(36).substr(2, 9);
 }
 
+/**
+ * Sets the user client ID in the local storage.
+ * @returns {void}
+ */
 function setUserClientId() {
   return localStorage.setItem("clientId", generateId());
 }
 
+/**
+ * Retrieves the client ID from the local storage.
+ * @returns {string|null} The client ID if it exists, or null if it doesn't.
+ */
 function getUserClientId() {
   return localStorage.getItem("clientId");
 }
 
+/**
+ * Creates a workout by collecting the workouts and sending them to the server.
+ * @returns {Promise<void>} A promise that resolves when the workout is created successfully.
+ */
 async function createWorkout() {
   const workouts = collectWorkouts();
 
@@ -61,6 +77,12 @@ async function createWorkout() {
   }
 }
 
+/**
+ * Starts the timer for a workout session.
+ * If a workout ID is provided, it fetches the workout by ID and starts the session with that workout.
+ * If no workout ID is provided, it collects workouts and starts the session with the first workout in the queue.
+ * @param {string|null} workoutId - The ID of the workout to start the session with.
+ */
 async function startTimer(workoutId = null) {
   if (workoutId) {
     const workout = await fetchWorkoutById(workoutId);
@@ -92,12 +114,16 @@ async function startTimer(workoutId = null) {
   // Initialize the workout session
   initializeWorkoutSession(workoutState);
 
-  clearInterval(interval); // Clear existing interval if any
+  clearInterval(interval);
   interval = setInterval(() => {
     handleIntervalTick();
   }, 1000);
 }
 
+/**
+ * Initializes a workout session with the given workout state.
+ * @param {Object} workoutState - The state of the workout session.
+ */
 function initializeWorkoutSession(workoutState) {
   options.style.display = "none";
   isRunning = true;
@@ -106,9 +132,13 @@ function initializeWorkoutSession(workoutState) {
   statusDescription.innerText = workoutState.currentWorkout.description;
   setsEl.innerText = workoutState.setsRemaining;
   setsSection.style.display = "block";
-  document.body.style.backgroundColor = "#ff9900"; // Activity color
+  document.body.style.backgroundColor = "#ff9900";
 }
 
+/**
+ * Handles the interval tick for the workout timer.
+ * Decreases the time left, updates the timer element, and handles the logic for switching between workout and rest states.
+ */
 function handleIntervalTick() {
   timeLeft--;
   timerEl.innerText = timeLeft;
@@ -144,6 +174,11 @@ function handleIntervalTick() {
   }
 }
 
+/**
+ * Fetches a workout by its ID.
+ * @param {string} workoutId - The ID of the workout to fetch.
+ * @returns {Promise<Object|null>} - A Promise that resolves to the fetched workout object, or null in case of any failures.
+ */
 async function fetchWorkoutById(workoutId) {
   try {
     const response = await fetch(
@@ -162,7 +197,7 @@ async function fetchWorkoutById(workoutId) {
 }
 
 /**
- * Resets the timer and sets the initial values.
+ * Resets the timer and restores the initial state of the application.
  */
 function resetTimer() {
   clearInterval(interval);
@@ -198,6 +233,9 @@ function pauseTimer() {
   }
 }
 
+/**
+ * Adds a workout field to the activity form.
+ */
 function addWorkoutField() {
   const section = document.createElement("section");
   section.classList.add("workout-input");
@@ -255,6 +293,10 @@ function addWorkoutField() {
   activityForm.appendChild(section);
 }
 
+/**
+ * Collects workout information from the DOM and returns an array of workout objects.
+ * @returns {Array<Object>} An array of workout objects containing the collected information.
+ */
 function collectWorkouts() {
   const workoutSections = document.querySelectorAll(".workout-input");
   const workouts = Array.from(workoutSections)
@@ -282,12 +324,16 @@ function collectWorkouts() {
   return workouts;
 }
 
-addWorkoutBtn.addEventListener("click", addWorkoutField);
-
+/**
+ * Removes the workout field from the DOM.
+ * @param {Event} el - The event object representing the click event.
+ */
 function removeWorkoutField(el) {
   const field = el.target.parentElement;
   field.remove();
 }
+
+addWorkoutBtn.addEventListener("click", addWorkoutField);
 
 startBtn.addEventListener("click", () => {
   if (!isRunning) {

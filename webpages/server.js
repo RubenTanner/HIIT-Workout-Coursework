@@ -6,12 +6,23 @@ const app = express();
 
 app.use(express.static("client", { extensions: ["html"] }));
 
+/**
+ * Retrieves the workouts for a specific user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
 function getWorkouts(req, res) {
   const usr_id = req.params.id;
   const workouts = wrk.listWorkouts(usr_id);
   res.json(workouts);
 }
 
+/**
+ * Retrieves a workout based on the provided ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
 function getWorkout(req, res) {
   const result = wrk.findWorkout(req.params.id);
   if (result) {
@@ -21,6 +32,12 @@ function getWorkout(req, res) {
   }
 }
 
+/**
+ * Saves workouts for a specific user.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
 function saveWorkouts(req, res) {
   const usr_id = req.params.id;
   const workouts = req.body.workouts;
