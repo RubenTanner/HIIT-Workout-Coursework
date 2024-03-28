@@ -3,6 +3,7 @@ const timerEl = document.querySelector("#time");
 const setsEl = document.querySelector("#sets");
 const setsSection = document.querySelector(".sets-section");
 const statusText = document.querySelector(".status-text");
+const statusDescription = document.querySelector(".status-description");
 const startBtn = document.querySelector("#start-btn");
 const resetBtn = document.querySelector("#reset-btn");
 const expandBtn = document.querySelector("#expand-btn");
@@ -21,6 +22,15 @@ const currentWorkout = document.querySelector("#current-workout");
 let isRunning = false;
 let interval;
 let timeLeft = 0;
+
+let workoutQueue = [];
+let currentWorkoutIndex = 0;
+let workoutState = {
+  activityTime: 0,
+  restTime: 0,
+  setsRemaining: 0,
+  currentWorkout: null,
+};
 
 function generateId() {
   return Math.random().toString(36).substr(2, 9);
@@ -50,42 +60,105 @@ async function createWorkout() {
     console.log("failed to send message", response);
   }
 }
-/**
- * Starts the timer for the HIIT workout.
- */
-function startTimer() {
-  const activityTime = parseInt(setActivity.value);
-  const restTime = parseInt(setRest.value);
-  let sets = parseInt(setSets.value);
 
+async function startTimer(workoutId = null) {
+  if (workoutId) {
+    const workout = await fetchWorkoutById(workoutId);
+    if (workout) {
+      workoutQueue = [workout];
+      currentWorkoutIndex = 0;
+    } else {
+      console.error("Failed to retrieve workout by ID");
+      return;
+    }
+  } else if (
+    workoutQueue.length === 0 ||
+    currentWorkoutIndex >= workoutQueue.length
+  ) {
+    workoutQueue = collectWorkouts();
+    currentWorkoutIndex = 0;
+    if (workoutQueue.length === 0) {
+      console.error("No workouts to start");
+      return;
+    }
+  }
+
+  const currentWorkout = workoutQueue[currentWorkoutIndex];
+  workoutState.activityTime = parseInt(currentWorkout.activity);
+  workoutState.restTime = parseInt(currentWorkout.rest);
+  workoutState.setsRemaining = parseInt(currentWorkout.sets);
+  workoutState.currentWorkout = currentWorkout;
+
+  // Initialize the workout session
+  initializeWorkoutSession(workoutState);
+
+  clearInterval(interval); // Clear existing interval if any
+  interval = setInterval(() => {
+    handleIntervalTick();
+  }, 1000);
+}
+
+function initializeWorkoutSession(workoutState) {
   options.style.display = "none";
   isRunning = true;
-  timeLeft = activityTime;
-  statusText.innerText = currentWorkout.name;
-  setsEl.innerText = sets;
+  timeLeft = workoutState.activityTime;
+  statusText.innerText = workoutState.currentWorkout.name;
+  statusDescription.innerText = workoutState.currentWorkout.description;
+  setsEl.innerText = workoutState.setsRemaining;
   setsSection.style.display = "block";
-  document.body.style.backgroundColor = "#ff9900";
+  document.body.style.backgroundColor = "#ff9900"; // Activity color
+}
 
-  interval = setInterval(() => {
-    timeLeft--;
-    if (timeLeft <= 0) {
-      if (statusText.innerText === "Activity") {
+function handleIntervalTick() {
+  timeLeft--;
+  timerEl.innerText = timeLeft;
+
+  if (timeLeft <= 0) {
+    if (statusText.innerText === workoutState.currentWorkout.name) {
+      if (workoutState.setsRemaining > 0) {
         statusText.innerText = "Rest";
+        statusDescription.innerText = "Take a break!";
         document.body.style.backgroundColor = "#66b3ff";
-        timeLeft = restTime;
-        sets--;
-        setsEl.innerText = sets;
-      } else {
-        statusText.innerText = "Activity";
+        timeLeft = workoutState.restTime;
+      }
+    } else {
+      workoutState.setsRemaining--;
+      setsEl.innerText = workoutState.setsRemaining;
+      console.log("hello");
+      if (workoutState.setsRemaining > 0) {
+        statusText.innerText = workoutState.currentWorkout.name;
+        statusDescription.innerText = workoutState.currentWorkout.description;
         document.body.style.backgroundColor = "#ff9900";
-        timeLeft = activityTime;
+        timeLeft = workoutState.activityTime;
+      } else {
+        // Current workout complete, check for next workout
+        currentWorkoutIndex++;
+        if (currentWorkoutIndex < workoutQueue.length) {
+          clearInterval(interval);
+          startTimer();
+        } else {
+          resetTimer();
+        }
       }
     }
-    if (sets === 0) {
-      resetTimer();
+  }
+}
+
+async function fetchWorkoutById(workoutId) {
+  try {
+    const response = await fetch(
+      `../Workouts/${getUserClientId()}/${workoutId}`
+    );
+    if (response.ok) {
+      const workout = await response.json();
+      return workout;
+    } else {
+      console.error("Failed to fetch workout", response);
     }
-    updateTimer();
-  }, 1000);
+  } catch (error) {
+    console.error("Error fetching workout by ID", error);
+  }
+  return null; // Return null in case of any failures
 }
 
 /**
