@@ -150,4 +150,6 @@ most functions (such as on main.js) didn't update from what i had already writte
 
 This has allowed functions to have more context when hovered over making my code more maintainable on a whole.
 
+_(you can see the commit with all the changes here https://github.com/RubenTanner/HIIT-Workout-Coursework/commit/5fca8ac149c11fad134ae9b0acc4fcaeedd1a80d)_
+
 ##### _(the repo is currently private if you wish to gain access please message me on Discord -> phatyikes)_
