@@ -133,6 +133,7 @@ function initializeWorkoutSession(workoutState) {
   setsEl.innerText = workoutState.setsRemaining;
   setsSection.style.display = "block";
   document.body.style.backgroundColor = "#ff9900";
+  timerEl.innerText = formatTime(timeLeft);
 }
 
 /**
@@ -141,7 +142,7 @@ function initializeWorkoutSession(workoutState) {
  */
 function handleIntervalTick() {
   timeLeft--;
-  timerEl.innerText = timeLeft;
+  timerEl.innerText = formatTime(timeLeft);
 
   if (timeLeft <= 0) {
     if (statusText.innerText === workoutState.currentWorkout.name) {
@@ -172,6 +173,13 @@ function handleIntervalTick() {
       }
     }
   }
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  const formattedSeconds = remainingSeconds.toString().padStart(2, "0");
+  return `${minutes}:${formattedSeconds}`;
 }
 
 /**
