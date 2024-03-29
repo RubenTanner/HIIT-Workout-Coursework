@@ -111,7 +111,6 @@ async function startTimer(workoutId = null) {
   workoutState.setsRemaining = parseInt(currentWorkout.sets);
   workoutState.currentWorkout = currentWorkout;
 
-  // Initialize the workout session
   initializeWorkoutSession(workoutState);
 
   clearInterval(interval);
@@ -162,7 +161,6 @@ function handleIntervalTick() {
         document.body.style.backgroundColor = "#ff9900";
         timeLeft = workoutState.activityTime;
       } else {
-        // Current workout complete, check for next workout
         currentWorkoutIndex++;
         if (currentWorkoutIndex < workoutQueue.length) {
           clearInterval(interval);
@@ -201,7 +199,7 @@ async function fetchWorkoutById(workoutId) {
   } catch (error) {
     console.error("Error fetching workout by ID", error);
   }
-  return null; // Return null in case of any failures
+  return null;
 }
 
 /**
@@ -328,7 +326,7 @@ function collectWorkouts() {
       }
       return null;
     })
-    .filter((workout) => workout !== null); // Filter out any nulls that may have been added
+    .filter((workout) => workout !== null);
   return workouts;
 }
 
@@ -346,10 +344,10 @@ addWorkoutBtn.addEventListener("click", addWorkoutField);
 startBtn.addEventListener("click", () => {
   if (!isRunning) {
     startTimer();
-    startBtn.innerText = "Pause"; // Change the text to "Pause"
+    startBtn.innerText = "Pause";
   } else {
     pauseTimer();
-    startBtn.innerText = "Start"; // Change the text back to "Start"
+    startBtn.innerText = "Start";
   }
 });
 
