@@ -164,3 +164,17 @@ input {
 .del-workout-btn:hover {
   background-color: coral;
 }
+
+.workout-history {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  border-top-left-radius: 10px;
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.history-content {
+  max-height: 300px;
+  overflow-y: auto;
+}

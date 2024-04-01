@@ -13,12 +13,12 @@ export function listWorkouts(usr_id) {
 /**
  * Finds a workout by its ID.
  *
- * @param {string} wkr_id - The ID of the workout to find.
+ * @param {string} wrk_id - The ID of the workout to find.
  * @returns {object|null} - The found workout object, or null if not found.
  */
-export function findWorkout(wkr_id) {
+export function findWorkout(wrk_id) {
   for (const workout of workouts) {
-    if (workout.wkr_id === wkr_id) {
+    if (workout.wrk_id === wrk_id) {
       return workout;
     }
   }
@@ -34,7 +34,7 @@ export function findWorkout(wkr_id) {
 export function addWorkout(workout, usr_id) {
   const newWorkout = {
     usr_id: usr_id,
-    wkr_id: workout.wrk_id,
+    wrk_id: workout.wrk_id,
     name: workout.name,
     description: workout.description,
     activity: parseInt(workout.activity), // Corrected here
@@ -42,6 +42,5 @@ export function addWorkout(workout, usr_id) {
     sets: parseInt(workout.sets), // And here
   };
   workouts = [newWorkout, ...workouts];
-  console.log("workouts", workouts);
   return newWorkout;
 }

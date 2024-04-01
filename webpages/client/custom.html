@@ -34,12 +34,10 @@
         <p class="sets-text">Sets Remaining</p>
         <p class="sets" id="sets">0</p>
       </section>
-      <section class="next-workout-section">
+      <section class="next-workout-section" style="display: none">
         <p class="status-text">Next Workout</p>
-        <p class="next-workout">Next Workout Name</p>
-        <p class="next-workout">Next Workout Description</p>
-        <p class="status-text">Workouts Remaining</p>
-        <p class="sets">0</p>
+        <p class="next-workout"></p>
+        <p class="next-workout-description"></p>
       </section>
       <button id="start-btn" class="btn">Start</button>
       <button id="reset-btn" class="btn">Reset</button>
@@ -87,6 +85,16 @@
             <button class="save-workout-btn" type="submit">SUBMIT</button>
           </section>
         </section>
+      </section>
+    </section>
+    <section id="workout-history-tab" class="workout-history">
+      <button id="toggle-history-btn" class="btn">Workout History</button>
+      <section
+        id="history-content"
+        class="history-content"
+        style="display: none"
+      >
+        <p>Your workout history</p>
       </section>
     </section>
   </body>

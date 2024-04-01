@@ -17,7 +17,12 @@ const setDescription = document.querySelector("#set-description");
 const setActivity = document.querySelector("#set-activity");
 const setRest = document.querySelector("#set-rest");
 const setSets = document.querySelector("#set-sets");
-const currentWorkout = document.querySelector("#current-workout");
+const nextWorkoutSection = document.querySelector(".next-workout-section");
+const currentWorkout = document.querySelector(".current-workout");
+const nextWorkoutEl = document.querySelector(".next-workout");
+const nextWorkoutDescription = document.querySelector(
+  ".next-workout-description"
+);
 
 let isRunning = false;
 let interval;
@@ -62,9 +67,6 @@ function getUserClientId() {
  */
 async function createWorkout() {
   const workouts = collectWorkouts();
-
-  console.log("workouts", workouts);
-
   const response = await fetch(`../Workouts/${getUserClientId()}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -111,7 +113,6 @@ async function startTimer(workoutId = null) {
   workoutState.setsRemaining = parseInt(currentWorkout.sets);
   workoutState.currentWorkout = currentWorkout;
 
-  // Initialize the workout session
   initializeWorkoutSession(workoutState);
 
   clearInterval(interval);
@@ -133,6 +134,7 @@ function initializeWorkoutSession(workoutState) {
   setsEl.innerText = workoutState.setsRemaining;
   setsSection.style.display = "block";
   document.body.style.backgroundColor = "#ff9900";
+  timerEl.innerText = formatTime(timeLeft);
 }
 
 /**
@@ -141,7 +143,7 @@ function initializeWorkoutSession(workoutState) {
  */
 function handleIntervalTick() {
   timeLeft--;
-  timerEl.innerText = timeLeft;
+  timerEl.innerText = formatTime(timeLeft);
 
   if (timeLeft <= 0) {
     if (statusText.innerText === workoutState.currentWorkout.name) {
@@ -154,14 +156,21 @@ function handleIntervalTick() {
     } else {
       workoutState.setsRemaining--;
       setsEl.innerText = workoutState.setsRemaining;
-      console.log("hello");
+      if (
+        workoutState.setsRemaining == 1 &&
+        currentWorkoutIndex + 1 < workoutQueue.length
+      ) {
+        const nextWorkout = workoutQueue[currentWorkoutIndex + 1];
+        nextWorkoutEl.innerText = "Up Next: " + nextWorkout.name;
+        nextWorkoutDescription.innerText = nextWorkout.description;
+        nextWorkoutSection.style.display = "block";
+      }
       if (workoutState.setsRemaining > 0) {
         statusText.innerText = workoutState.currentWorkout.name;
         statusDescription.innerText = workoutState.currentWorkout.description;
         document.body.style.backgroundColor = "#ff9900";
         timeLeft = workoutState.activityTime;
       } else {
-        // Current workout complete, check for next workout
         currentWorkoutIndex++;
         if (currentWorkoutIndex < workoutQueue.length) {
           clearInterval(interval);
@@ -172,6 +181,19 @@ function handleIntervalTick() {
       }
     }
   }
+}
+
+/**
+ * Formats the given time in seconds into a string representation of minutes and seconds.
+ *
+ * @param {number} seconds - The time in seconds.
+ * @returns {string} The formatted time in the format "minutes:seconds".
+ */
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  const formattedSeconds = remainingSeconds.toString().padStart(2, "0");
+  return `${minutes}:${formattedSeconds}`;
 }
 
 /**
@@ -193,11 +215,11 @@ async function fetchWorkoutById(workoutId) {
   } catch (error) {
     console.error("Error fetching workout by ID", error);
   }
-  return null; // Return null in case of any failures
+  return null;
 }
 
 /**
- * Resets the timer and restores the initial state of the application.
+ * Resets the timer and clears the interval.
  */
 function resetTimer() {
   clearInterval(interval);
@@ -209,6 +231,8 @@ function resetTimer() {
   document.body.style.backgroundColor = "#f5f5f5";
 
   options.style.display = "block";
+
+  getWorkoutHistory();
 }
 
 /**
@@ -320,8 +344,66 @@ function collectWorkouts() {
       }
       return null;
     })
-    .filter((workout) => workout !== null); // Filter out any nulls that may have been added
+    .filter((workout) => workout !== null);
   return workouts;
+}
+
+/**
+ * Retrieves the workout history for the user.
+ * @returns {Promise<void>} A promise that resolves when the workout history is fetched and displayed.
+ */
+async function getWorkoutHistory() {
+  try {
+    const response = await fetch(`../Workouts/${getUserClientId()}`);
+    const workoutHistory = await response.json();
+
+    updateWorkoutHistoryDisplay(workoutHistory);
+  } catch (error) {
+    console.error("Failed to fetch workout history:", error);
+  }
+}
+
+/**
+ * Updates the workout history display with the provided workout history data.
+ *
+ * @param {Array} workoutHistory - The array of workout history entries.
+ * @returns {void}
+ */
+function updateWorkoutHistoryDisplay(workoutHistory) {
+  const historyContent = document.getElementById("history-content");
+  historyContent.innerHTML = "";
+
+  workoutHistory.forEach((workout) => {
+    const section = document.createElement("section");
+    section.classList.add("workout-history-entry");
+
+    const name = document.createElement("h3");
+    name.textContent = workout.name;
+
+    const description = document.createElement("p");
+    description.textContent = `Description: ${workout.description}`;
+
+    const activity = document.createElement("p");
+    activity.textContent = `Activity: ${workout.activity} seconds`;
+
+    const rest = document.createElement("p");
+    rest.textContent = `Rest: ${workout.rest} seconds`;
+
+    const sets = document.createElement("p");
+    sets.textContent = `Sets: ${workout.sets}`;
+
+    const wrk_id = document.createElement("p");
+    wrk_id.textContent = `ID: ${workout.wrk_id}`;
+
+    section.appendChild(name);
+    section.appendChild(description);
+    section.appendChild(activity);
+    section.appendChild(rest);
+    section.appendChild(sets);
+    section.appendChild(wrk_id);
+
+    historyContent.appendChild(section);
+  });
 }
 
 /**
@@ -338,10 +420,10 @@ addWorkoutBtn.addEventListener("click", addWorkoutField);
 startBtn.addEventListener("click", () => {
   if (!isRunning) {
     startTimer();
-    startBtn.innerText = "Pause"; // Change the text to "Pause"
+    startBtn.innerText = "Pause";
   } else {
     pauseTimer();
-    startBtn.innerText = "Start"; // Change the text back to "Start"
+    startBtn.innerText = "Start";
   }
 });
 
@@ -364,5 +446,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!localStorage.getItem("clientId")) {
     setUserClientId();
   }
-  console.log("Client ID", getUserClientId());
+
+  const toggleButton = document.querySelector("#toggle-history-btn");
+  const historyContent = document.querySelector("#history-content");
+
+  toggleButton.addEventListener("click", function () {
+    const isHidden = historyContent.style.display === "none";
+    historyContent.style.display = isHidden ? "block" : "none";
+  });
+
+  getWorkoutHistory();
 });
