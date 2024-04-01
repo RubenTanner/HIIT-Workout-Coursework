@@ -42,6 +42,5 @@ export function addWorkout(workout, usr_id) {
     sets: parseInt(workout.sets), // And here
   };
   workouts = [newWorkout, ...workouts];
-  console.log("workouts", workouts);
   return newWorkout;
 }
