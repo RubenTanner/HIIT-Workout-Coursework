@@ -6,35 +6,42 @@
 
 To start the application, follow these steps:
 
-1. Make sure you have Node.js and npm installed on your machine. If not, you can download and install them from the official Node.js website.
+**Requirements**
 
-2. Clone the repository to your local machine using the following command:
+Before starting the application, make sure you have the following software installed on your machine:
+
+- Node.js
+- npm (Node Package Manager)
+
+If you don't have Node.js and npm installed, you can download them from the official Node.js website: [https://nodejs.org](https://nodejs.org)
+
+1. Clone the repository to your local machine using the following command:
 
    ```bash
    git clone https://github.com/RubenTanner/HIIT-Workout-Coursework.git
    ```
 
-3. Navigate to the project directory:
+2. Navigate to the project directory:
 
    ```bash
    cd HIIT-Workout-Coursework
    ```
 
-4. Install the dependencies by running the following command:
+3. Install the dependencies by running the following command:
 
    ```bash
    npm install
    ```
 
-5. Once the dependencies are installed, you can start the application with the following command:
+4. Once the dependencies are installed, you can start the application with the following command:
 
    ```bash
    npm start
    ```
 
-6. Open your web browser and navigate to `http://localhost:8080/index.html` to access the homepage of the application.
+5. Open your web browser and navigate to `http://localhost:8080` to access the homepage of the application.
 
-That's it! You have successfully started the application and can now use it to create and manage your HIIT workouts.
+That's it! You can now use my HIIT timer!
 
 ## Key feature
 
@@ -55,6 +62,18 @@ The Visual queues also indicate warm up/cool down times at the end of a complete
 I have also created another page, with the same styling as the **Quick Start** feature. This allows the user to create their own workouts, including a custom title (to replace "Activity" which would normally display), a description of the workout, the ability to adjust individual workouts activity and rest time, the ability to adjust how many sets are there for each individual workout.
 
 This can be found by pressing the "Custom" button on the **Quick Start** page found below the Options button
+
+### View Workout History
+
+I have also made on the custom page the ability for the user to see their workout history, this includes the name, description and timings in seconds for the workout. I have also included the ability for the user to see the ID for a potential other feature (the code is already in the start timer i just need to add the ui elements and work some more on logic) where the user can add previous workouts to the queue
+
+This can be found by navigating to the custom page and clicking the **View Workout History**
+
+### Upcoming Workout
+
+The user can see the next workout coming up on the last set of their current workout. This is displayed below the set countdown and gives the Name and Description of the workout.
+
+This can be found after a multi-workout event is made AND the user is on their final set.
 
 ### Responsive design
 
@@ -80,6 +99,26 @@ The link to the repo -> **[here](https://github.com/RubenTanner/HIIT-Workout-Cou
 3. I even PR my work to review what ive done
    ![Pull Requests](/README-images/Screenshot%202024-03-25%20at%2011.30.41.png "Pull Requests")
    _I even denied this Pull request due to an issue i found (and raised in issues)_
+
+4. Use of rules
+   I make use of the rules that can be setup on github to maintain security of branches. With me inviting collaborators (the moderators) to my project i wanted to ensure that any changes would have to be reviewed by me, and that force pushing to the main branch wasn't possible
+   ![rules](/README-images/Screenshot%202024-04-02%20at%2012.00.53.png "Rules")
+
+## Future Plans
+
+### github actions
+
+I started experimenting with the idea of using github actions during the coursework (and still may) but i just don't know enough about them to be fully confident with my ability to implement them to the best of my ability.
+
+### full database
+
+I could achieve what i wanted too without needing a database for this coursework, and while not ideal, id much rather use a framework to help with the schema and implementation of the database as im just not as confident in my ability to keep it secure and efficient.
+
+Anyway, i want to in future add a database so that users can move devices and not have to know their user ID
+
+### Sharing/Social media implementation
+
+I would love to implement social media sharing for this application, however i struggled to find an easy way to do it, and really, i think i just ran out of time :(
 
 ## Use Of AI
 
