@@ -102,7 +102,9 @@ The link to the repo -> **[here](https://github.com/RubenTanner/HIIT-Workout-Cou
 
 4. Use of rules
    I make use of the rules that can be setup on github to maintain security of branches. With me inviting collaborators (the moderators) to my project i wanted to ensure that any changes would have to be reviewed by me, and that force pushing to the main branch wasn't possible
-   ![rules](/README-images/Screenshot%202024-04-02%20at%2012.00.53.png "Rules")
+   ![Rules](/README-images/Screenshot%202024-04-02%20at%2012.00.53.png "Rules")
+   You can see by the image below that when i try and commit to main it doesn't actually let me!
+   ![Rules In Effect](/README-images/Screenshot%202024-04-02%20at%2012.32.30.png "Rules In Effect")
 
 ## Future Plans
 
