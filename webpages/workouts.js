@@ -37,9 +37,9 @@ export function addWorkout(workout, usr_id) {
     wrk_id: workout.wrk_id,
     name: workout.name,
     description: workout.description,
-    activity: parseInt(workout.activity), // Corrected here
-    rest: parseInt(workout.rest), // And here
-    sets: parseInt(workout.sets), // And here
+    activity: parseInt(workout.activity),
+    rest: parseInt(workout.rest),
+    sets: parseInt(workout.sets),
   };
   workouts = [newWorkout, ...workouts];
   return newWorkout;
