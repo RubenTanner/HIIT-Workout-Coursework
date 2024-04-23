@@ -236,17 +236,6 @@ function resetTimer() {
 }
 
 /**
- * Updates the timer display with the remaining time.
- */
-function updateTimer() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  timerEl.innerText = `${minutes.toString().padStart(2, "0")}:${seconds
-    .toString()
-    .padStart(2, "0")}`;
-}
-
-/**
  * Pauses the timer if it is currently running.
  */
 function pauseTimer() {
