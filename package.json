@@ -1,11 +1,10 @@
 {
-  "name": "HIIT-Workout-Coursework",
+  "name": "hiit-workout-coursework",
   "version": "1.0.0",
   "description": "HIIT timer for 2nd year Web Programming coursework ",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd webpages && node server"
   },
   "repository": {
