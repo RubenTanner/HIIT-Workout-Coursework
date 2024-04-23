@@ -8,8 +8,6 @@ To start the application, follow these steps:
 
 **Requirements**
 
-Before starting the application, make sure you have the following software installed on your machine:
-
 - Node.js
 - npm (Node Package Manager)
 
@@ -30,7 +28,7 @@ If you don't have Node.js and npm installed, you can download them from the offi
 3. Install the dependencies by running the following command:
 
    ```bash
-   npm install
+   npm i
    ```
 
 4. Once the dependencies are installed, you can start the application with the following command:
@@ -39,9 +37,9 @@ If you don't have Node.js and npm installed, you can download them from the offi
    npm start
    ```
 
-5. Open your web browser and navigate to `http://localhost:8080` to access the homepage of the application.
+5. Open your web browser and navigate to `http://localhost:8080`
 
-That's it! You can now use my HIIT timer!
+That's it!
 
 ## Key feature
 
@@ -49,7 +47,7 @@ That's it! You can now use my HIIT timer!
 
 The quick start feature allows a user to quickly start a preset workout of just time. The user can adjust the default activity and rest time using the "Options" tab as well as adjusting the amount of sets.
 
-The user can also select if they want to include a preset warm up and cool down section, this is 60 seconds each and cannot be changed
+There is also a count in of 3 seconds to allow the user to get ready when the timer first starts OR when it is started after a pause.
 
 ### Visual Cues
 

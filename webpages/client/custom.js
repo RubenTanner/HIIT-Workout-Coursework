@@ -67,7 +67,7 @@ function getUserClientId() {
  */
 async function createWorkout() {
   const workouts = collectWorkouts();
-  const response = await fetch(`../Workouts/${getUserClientId()}`, {
+  const response = await fetch(`../workouts/${getUserClientId()}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ workouts }),
@@ -204,7 +204,7 @@ function formatTime(seconds) {
 async function fetchWorkoutById(workoutId) {
   try {
     const response = await fetch(
-      `../Workouts/${getUserClientId()}/${workoutId}`
+      `../workouts/${getUserClientId()}/${workoutId}`
     );
     if (response.ok) {
       const workout = await response.json();
@@ -233,17 +233,6 @@ function resetTimer() {
   options.style.display = "block";
 
   getWorkoutHistory();
-}
-
-/**
- * Updates the timer display with the remaining time.
- */
-function updateTimer() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  timerEl.innerText = `${minutes.toString().padStart(2, "0")}:${seconds
-    .toString()
-    .padStart(2, "0")}`;
 }
 
 /**
@@ -307,14 +296,8 @@ function addWorkoutField() {
     section.remove();
   });
 
-  section.appendChild(name);
-  section.appendChild(description);
-  section.appendChild(activity);
-  section.appendChild(rest);
-  section.appendChild(sets);
-  section.appendChild(btnDel);
-
-  activityForm.appendChild(section);
+  section.append(name, description, activity, rest, sets, btnDel);
+  activityForm.append(section);
 }
 
 /**
@@ -354,7 +337,7 @@ function collectWorkouts() {
  */
 async function getWorkoutHistory() {
   try {
-    const response = await fetch(`../Workouts/${getUserClientId()}`);
+    const response = await fetch(`../workouts/${getUserClientId()}`);
     const workoutHistory = await response.json();
 
     updateWorkoutHistoryDisplay(workoutHistory);
@@ -395,14 +378,14 @@ function updateWorkoutHistoryDisplay(workoutHistory) {
     const wrk_id = document.createElement("p");
     wrk_id.textContent = `ID: ${workout.wrk_id}`;
 
-    section.appendChild(name);
-    section.appendChild(description);
-    section.appendChild(activity);
-    section.appendChild(rest);
-    section.appendChild(sets);
-    section.appendChild(wrk_id);
+    section.append(name);
+    section.append(description);
+    section.append(activity);
+    section.append(rest);
+    section.append(sets);
+    section.append(wrk_id);
 
-    historyContent.appendChild(section);
+    historyContent.append(section);
   });
 }
 

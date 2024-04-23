@@ -42,15 +42,15 @@ function saveWorkouts(req, res) {
   const usr_id = req.params.id;
   const workouts = req.body.workouts;
 
-  const savedWorkouts = workouts.map((workout) =>
-    wrk.addWorkout(workout, usr_id)
+  const savedWorkouts = workouts.map(
+    (workout) => wrk.addWorkout(workout, usr_id) //TODO: CLEAN UP MAP TO BACKEND
   );
 
   res.json(savedWorkouts);
 }
 
-app.get("/Workouts/:id", getWorkouts);
-app.get("/Workout/:id", getWorkout);
-app.post("/Workouts/:id", express.json(), saveWorkouts);
+app.get("/workouts/:id", getWorkouts);
+app.get("/workout/:id", getWorkout);
+app.post("/workouts/:id", express.json(), saveWorkouts);
 
 app.listen(8080);
