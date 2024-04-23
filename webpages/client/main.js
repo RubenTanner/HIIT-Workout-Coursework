@@ -93,10 +93,10 @@ function pauseTimer() {
 startBtn.addEventListener("click", () => {
   if (!isRunning) {
     startTimer();
-    startBtn.innerText = "Pause"; // Change the text to "Pause"
+    startBtn.innerText = "Pause";
   } else {
     pauseTimer();
-    startBtn.innerText = "Start"; // Change the text back to "Start"
+    startBtn.innerText = "Start";
   }
 });
 
