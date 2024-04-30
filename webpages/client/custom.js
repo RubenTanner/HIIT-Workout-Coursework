@@ -113,7 +113,7 @@ async function startTimer(workoutId = null) {
   workoutState.setsRemaining = parseInt(currentWorkout.sets);
   workoutState.currentWorkout = currentWorkout;
 
-  initializeWorkoutSession(workoutState);
+  initialiseWorkoutSession(workoutState);
 
   clearInterval(interval);
   interval = setInterval(() => {
@@ -125,7 +125,7 @@ async function startTimer(workoutId = null) {
  * Initializes a workout session with the given workout state.
  * @param {Object} workoutState - The state of the workout session.
  */
-function initializeWorkoutSession(workoutState) {
+function initialiseWorkoutSession(workoutState) {
   options.style.display = "none";
   isRunning = true;
   timeLeft = workoutState.activityTime;
@@ -300,13 +300,13 @@ function addWorkoutField() {
 
   // Create rest prompt
   const restPrompt = document.createElement("p");
-  restPrompt.innerText = "Rest (Seconds):";
+  restPrompt.innerText = "Rest:";
 
   // Create rest input
   const rest = document.createElement("input");
   rest.type = "number";
   rest.classList.add("input-field", "set-rest");
-  rest.placeholder = "Rest (Seconds)";
+  rest.placeholder = "Rest";
   rest.min = 0;
   rest.required = true;
 
