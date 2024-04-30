@@ -47,34 +47,42 @@
           <section id="form" action="" method="POST">
             <section id="workout-list" class="input-field">
               <section class="workout-input">
+                <p>Name:</p>
                 <input
                   class="input-field set-name"
                   type="text"
                   placeholder="Name"
                   required
                 />
+                <p>Description:</p>
                 <input
                   class="input-field set-description"
                   type="text"
                   placeholder="Description"
                   required
                 />
+                <p>Activity:</p>
                 <input
                   class="input-field set-activity"
                   type="number"
                   placeholder="Activity (seconds)"
+                  min="0"
                   required
                 />
+                <p>Rest:</p>
                 <input
                   class="input-field set-rest"
                   type="number"
                   placeholder="Rest (seconds)"
+                  min="0"
                   required
                 />
+                <p>Sets:</p>
                 <input
                   class="input-field set-sets"
                   type="number"
                   placeholder="Sets"
+                  min="1"
                   required
                 />
                 <button class="add-workout-btn" type="button">

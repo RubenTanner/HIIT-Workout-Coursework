@@ -264,11 +264,20 @@ function addWorkoutField() {
   const section = document.createElement("section");
   section.classList.add("workout-input");
 
+  // Create name prompt
+  const namePrompt = document.createElement("p");
+  namePrompt.innerText = "Name:";
+
+  // Create name input
   const name = document.createElement("input");
   name.type = "text";
   name.classList.add("input-field", "set-name");
   name.placeholder = "Name";
   name.required = true;
+
+  // Create description prompt
+  const descriptionPrompt = document.createElement("p");
+  descriptionPrompt.innerText = "Description:";
 
   // Create description input
   const description = document.createElement("input");
@@ -277,25 +286,40 @@ function addWorkoutField() {
   description.placeholder = "Description";
   description.required = true;
 
+  // Create activity prompt
+  const activityPrompt = document.createElement("p");
+  activityPrompt.innerText = "Activity (Seconds):";
+
   // Create activity input
   const activity = document.createElement("input");
   activity.type = "number";
   activity.classList.add("input-field", "set-activity");
-  activity.placeholder = "Activity (minutes)";
+  activity.placeholder = "Activity (Seconds)";
+  activity.min = 0;
   activity.required = true;
+
+  // Create rest prompt
+  const restPrompt = document.createElement("p");
+  restPrompt.innerText = "Rest (Seconds):";
 
   // Create rest input
   const rest = document.createElement("input");
   rest.type = "number";
   rest.classList.add("input-field", "set-rest");
-  rest.placeholder = "Rest (minutes)";
+  rest.placeholder = "Rest (Seconds)";
+  rest.min = 0;
   rest.required = true;
+
+  // Create sets prompt
+  const setsPrompt = document.createElement("p");
+  setsPrompt.innerText = "Sets:";
 
   // Create sets input
   const sets = document.createElement("input");
   sets.type = "number";
   sets.classList.add("input-field", "set-sets");
   sets.placeholder = "Sets";
+  sets.min = 1;
   sets.required = true;
 
   // Create delete button
@@ -307,7 +331,19 @@ function addWorkoutField() {
     section.remove();
   });
 
-  section.append(name, description, activity, rest, sets, btnDel);
+  section.append(
+    namePrompt,
+    name,
+    descriptionPrompt,
+    description,
+    activityPrompt,
+    activity,
+    restPrompt,
+    rest,
+    setsPrompt,
+    sets,
+    btnDel
+  );
   activityForm.append(section);
 }
 
