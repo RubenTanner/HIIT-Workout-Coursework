@@ -1,28 +1,34 @@
-// DOM ELEMENTS
-const timerEl = document.querySelector("#time");
-const setsEl = document.querySelector("#sets");
-const setsSection = document.querySelector(".sets-section");
-const statusText = document.querySelector(".status-text");
-const statusDescription = document.querySelector(".status-description");
-const startBtn = document.querySelector("#start-btn");
-const resetBtn = document.querySelector("#reset-btn");
-const expandBtn = document.querySelector("#expand-btn");
-const expandOptions = document.querySelector(".options-content");
-const options = document.querySelector(".advanced-options");
-const activityForm = document.querySelector("#workout-list");
-const addWorkoutBtn = document.querySelector(".add-workout-btn");
-const saveWorkoutBtn = document.querySelector(".save-workout-btn");
-const setName = document.querySelector("#set-name");
-const setDescription = document.querySelector("#set-description");
-const setActivity = document.querySelector("#set-activity");
-const setRest = document.querySelector("#set-rest");
-const setSets = document.querySelector("#set-sets");
-const nextWorkoutSection = document.querySelector(".next-workout-section");
-const currentWorkout = document.querySelector(".current-workout");
-const nextWorkoutEl = document.querySelector(".next-workout");
-const nextWorkoutDescription = document.querySelector(
-  ".next-workout-description"
-);
+// DOM Elements
+const elements = {
+  timerEl: "#time",
+  setsEl: "#sets",
+  setsSection: ".sets-section",
+  statusText: ".status-text",
+  statusDescription: ".status-description",
+  startBtn: "#start-btn",
+  resetBtn: "#reset-btn",
+  expandBtn: "#expand-btn",
+  expandOptions: ".options-content",
+  options: ".advanced-options",
+  activityForm: "#workout-list",
+  addWorkoutBtn: ".add-workout-btn",
+  saveWorkoutBtn: ".save-workout-btn",
+  setName: "#set-name",
+  setDescription: "#set-description",
+  setActivity: "#set-activity",
+  setRest: "#set-rest",
+  setSets: "#set-sets",
+  nextWorkoutSection: ".next-workout-section",
+  currentWorkout: ".current-workout",
+  nextWorkoutEl: ".next-workout",
+  nextWorkoutDescription: ".next-workout-description",
+};
+
+const el = {};
+
+for (const [key, selector] of Object.entries(elements)) {
+  el[key] = document.querySelector(selector);
+}
 
 let isRunning = false;
 let interval;
@@ -126,15 +132,15 @@ async function startTimer(workoutId = null) {
  * @param {Object} workoutState - The state of the workout session.
  */
 function initialiseWorkoutSession(workoutState) {
-  options.style.display = "none";
+  el.options.style.display = "none";
   isRunning = true;
   timeLeft = workoutState.activityTime;
-  statusText.innerText = workoutState.currentWorkout.name;
-  statusDescription.innerText = workoutState.currentWorkout.description;
-  setsEl.innerText = workoutState.setsRemaining;
-  setsSection.style.display = "block";
+  el.statusText.innerText = workoutState.currentWorkout.name;
+  el.statusDescription.innerText = workoutState.currentWorkout.description;
+  el.setsEl.innerText = workoutState.setsRemaining;
+  el.setsSection.style.display = "block";
   document.body.style.backgroundColor = "#ff9900";
-  timerEl.innerText = formatTime(timeLeft);
+  el.timerEl.innerText = formatTime(timeLeft);
 }
 
 /**
@@ -143,31 +149,32 @@ function initialiseWorkoutSession(workoutState) {
  */
 function handleIntervalTick() {
   timeLeft--;
-  timerEl.innerText = formatTime(timeLeft);
+  el.timerEl.innerText = formatTime(timeLeft);
 
   if (timeLeft <= 0) {
-    if (statusText.innerText === workoutState.currentWorkout.name) {
+    if (el.statusText.innerText === workoutState.currentWorkout.name) {
       if (workoutState.setsRemaining > 0) {
-        statusText.innerText = "Rest";
-        statusDescription.innerText = "Take a break!";
+        el.statusText.innerText = "Rest";
+        el.statusDescription.innerText = "Take a break!";
         document.body.style.backgroundColor = "#66b3ff";
         timeLeft = workoutState.restTime;
       }
     } else {
       workoutState.setsRemaining--;
-      setsEl.innerText = workoutState.setsRemaining;
+      el.setsEl.innerText = workoutState.setsRemaining;
       if (
         workoutState.setsRemaining == 1 &&
         currentWorkoutIndex + 1 < workoutQueue.length
       ) {
         const nextWorkout = workoutQueue[currentWorkoutIndex + 1];
-        nextWorkoutEl.innerText = "Up Next: " + nextWorkout.name;
-        nextWorkoutDescription.innerText = nextWorkout.description;
-        nextWorkoutSection.style.display = "block";
+        el.nextWorkoutEl.innerText = "Up Next: " + nextWorkout.name;
+        el.nextWorkoutDescription.innerText = nextWorkout.description;
+        el.nextWorkoutSection.style.display = "block";
       }
       if (workoutState.setsRemaining > 0) {
-        statusText.innerText = workoutState.currentWorkout.name;
-        statusDescription.innerText = workoutState.currentWorkout.description;
+        el.statusText.innerText = workoutState.currentWorkout.name;
+        el.statusDescription.innerText =
+          workoutState.currentWorkout.description;
         document.body.style.backgroundColor = "#ff9900";
         timeLeft = workoutState.activityTime;
       } else {
@@ -225,12 +232,12 @@ function resetTimer() {
   clearInterval(interval);
   isRunning = false;
   timeLeft = 0;
-  setsSection.style.display = "none";
-  statusText.innerText = "Press Start";
-  timerEl.innerText = "00:00";
+  el.setsSection.style.display = "none";
+  el.statusText.innerText = "Press Start";
+  el.timerEl.innerText = "00:00";
   document.body.style.backgroundColor = "#f5f5f5";
 
-  options.style.display = "block";
+  el.options.style.display = "block";
 
   getWorkoutHistory();
 }
@@ -333,7 +340,7 @@ function addWorkoutField() {
     sets,
     btnDel
   );
-  activityForm.append(section);
+  el.activityForm.append(section);
 }
 
 /**
@@ -413,13 +420,7 @@ function updateWorkoutHistoryDisplay(workoutHistory) {
     const wrk_id = document.createElement("p");
     wrk_id.textContent = `ID: ${workout.wrk_id}`;
 
-    section.append(name);
-    section.append(description);
-    section.append(activity);
-    section.append(rest);
-    section.append(sets);
-    section.append(wrk_id);
-
+    section.append(name, description, activity, rest, sets, wrk_id);
     historyContent.append(section);
   });
 }
@@ -433,32 +434,32 @@ function removeWorkoutField(el) {
   field.remove();
 }
 
-addWorkoutBtn.addEventListener("click", addWorkoutField);
+el.addWorkoutBtn.addEventListener("click", addWorkoutField);
 
-startBtn.addEventListener("click", () => {
+el.startBtn.addEventListener("click", () => {
   if (!isRunning) {
     startTimer();
-    startBtn.innerText = "Pause";
+    el.startBtn.innerText = "Pause";
   } else {
     pauseTimer();
-    startBtn.innerText = "Start";
+    el.startBtn.innerText = "Start";
   }
 });
 
-resetBtn.addEventListener("click", () => {
+el.resetBtn.addEventListener("click", () => {
   resetTimer();
-  startBtn.innerText = "Start";
+  el.startBtn.innerText = "Start";
 });
 
-expandBtn.addEventListener("click", function () {
-  if (expandOptions.style.display === "none") {
-    expandOptions.style.display = "block";
+el.expandBtn.addEventListener("click", function () {
+  if (el.expandOptions.style.display === "none") {
+    el.expandOptions.style.display = "block";
   } else {
-    expandOptions.style.display = "none";
+    el.expandOptions.style.display = "none";
   }
 });
 
-saveWorkoutBtn.addEventListener("click", createWorkout);
+el.saveWorkoutBtn.addEventListener("click", createWorkout);
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!localStorage.getItem("clientId")) {
