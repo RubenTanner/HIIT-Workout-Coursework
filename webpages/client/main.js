@@ -1,16 +1,23 @@
-// DOM ELEMENTS
-const timerEl = document.querySelector("#time");
-const setsEl = document.querySelector("#sets");
-const setsSection = document.querySelector(".sets-section");
-const statusText = document.querySelector(".status-text");
-const startBtn = document.querySelector("#start-btn");
-const resetBtn = document.querySelector("#reset-btn");
-const setActivity = document.querySelector("#set-activity");
-const setRest = document.querySelector("#set-rest");
-const setSets = document.querySelector("#set-sets");
-const expandBtn = document.querySelector("#expand-btn");
-const options = document.querySelector(".advanced-options");
-const expandOptions = document.querySelector(".options-content");
+const elements = {
+  timerEl: "#time",
+  setsEl: "#sets",
+  setsSection: ".sets-section",
+  statusText: ".status-text",
+  startBtn: "#start-btn",
+  resetBtn: "#reset-btn",
+  setActivity: "#set-activity",
+  setRest: "#set-rest",
+  setSets: "#set-sets",
+  expandBtn: "#expand-btn",
+  options: ".advanced-options",
+  expandOptions: ".options-content",
+};
+
+const el = {};
+
+for (const [key, selector] of Object.entries(elements)) {
+  el[key] = document.querySelector(selector);
+}
 
 let isRunning = false;
 let interval;
@@ -19,44 +26,39 @@ let timeLeft = 0;
  * Starts the timer for the HIIT workout.
  */
 function startTimer() {
-  const activityTime = parseInt(setActivity.value);
-  const restTime = parseInt(setRest.value);
-  let sets = parseInt(setSets.value);
-  options.style.display = "none";
+  const activityTime = parseInt(el.setActivity.value);
+  const restTime = parseInt(el.setRest.value);
+  let sets = parseInt(el.setSets.value);
+
+  el.options.style.display = "none";
   isRunning = true;
   timeLeft = activityTime;
   setsEl.innerText = sets;
   let countdown = 3;
+  el.statusText.innerText = "Activity";
+  el.setsEl.innerText = sets;
+  el.setsSection.style.display = "block";
+  document.body.style.backgroundColor = "#ff9900";
 
   interval = setInterval(() => {
-    if (countdown >= 0) {
-      document.body.style.backgroundColor = "#99ff99";
-      statusText.innerText = `Get Ready!`;
-      timerEl.innerText = `${countdown}`;
-      countdown--;
-    } else {
-      statusText.innerText = "Activity";
-      document.body.style.backgroundColor = "#ff9900";
-      setsSection.style.display = "block";
-      timeLeft--;
-      if (timeLeft <= 0) {
-        if (statusText.innerText === "Activity") {
-          statusText.innerText = "Rest";
-          document.body.style.backgroundColor = "#66b3ff";
-          timeLeft = restTime;
-          sets--;
-          setsEl.innerText = sets;
-        } else {
-          statusText.innerText = "Activity";
-          document.body.style.backgroundColor = "#ff9900";
-          timeLeft = activityTime;
-        }
+    timeLeft--;
+    if (timeLeft <= 0) {
+      if (el.statusText.innerText === "Activity") {
+        el.statusText.innerText = "Rest";
+        document.body.style.backgroundColor = "#66b3ff";
+        timeLeft = restTime;
+        sets--;
+        el.setsEl.innerText = sets;
+      } else {
+        el.statusText.innerText = "Activity";
+        document.body.style.backgroundColor = "#ff9900";
+        timeLeft = activityTime;
       }
-      if (sets === 0) {
-        resetTimer();
-      }
-      updateTimer();
     }
+    if (sets === 0) {
+      resetTimer();
+    }
+    updateTimer();
   }, 1000);
 }
 
@@ -67,12 +69,12 @@ function resetTimer() {
   clearInterval(interval);
   isRunning = false;
   timeLeft = 0;
-  setsSection.style.display = "none";
-  statusText.innerText = "Press Start";
-  timerEl.innerText = "00:00";
+  el.setsSection.style.display = "none";
+  el.statusText.innerText = "Press Start";
+  el.timerEl.innerText = "00:00";
   document.body.style.backgroundColor = "#f5f5f5";
 
-  options.style.display = "block";
+  el.options.style.display = "block";
 }
 
 /**
@@ -81,7 +83,7 @@ function resetTimer() {
 function updateTimer() {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
-  timerEl.innerText = `${minutes.toString().padStart(2, "0")}:${seconds
+  el.timerEl.innerText = `${minutes.toString().padStart(2, "0")}:${seconds
     .toString()
     .padStart(2, "0")}`;
 }
@@ -93,29 +95,29 @@ function pauseTimer() {
   if (isRunning) {
     clearInterval(interval);
     isRunning = false;
-    statusText.innerText = "Paused";
+    el.statusText.innerText = "Paused";
   }
 }
 
-startBtn.addEventListener("click", () => {
+el.startBtn.addEventListener("click", () => {
   if (!isRunning) {
     startTimer();
-    startBtn.innerText = "Pause";
+    el.startBtn.innerText = "Pause"; // Change the text to "Pause"
   } else {
     pauseTimer();
-    startBtn.innerText = "Start";
+    el.startBtn.innerText = "Start"; // Change the text back to "Start"
   }
 });
 
-resetBtn.addEventListener("click", () => {
+el.resetBtn.addEventListener("click", () => {
   resetTimer();
-  startBtn.innerText = "Start";
+  el.startBtn.innerText = "Start";
 });
 
-expandBtn.addEventListener("click", function () {
-  if (expandOptions.style.display === "none") {
-    expandOptions.style.display = "block";
+el.expandBtn.addEventListener("click", function () {
+  if (el.expandOptions.style.display === "none") {
+    el.expandOptions.style.display = "block";
   } else {
-    expandOptions.style.display = "none";
+    el.expandOptions.style.display = "none";
   }
 });
