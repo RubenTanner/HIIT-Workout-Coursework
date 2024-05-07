@@ -73,9 +73,9 @@ async function createWorkout() {
     body: JSON.stringify({ workouts }),
   });
   if (response.ok) {
-    console.log("message sent successfully", response);
+    console.log("Workout created successfully", response);
   } else {
-    console.log("failed to send message", response);
+    console.error("Failed to create workout", response);
   }
 }
 
