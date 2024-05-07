@@ -33,7 +33,7 @@ function startTimer() {
   el.options.style.display = "none";
   isRunning = true;
   timeLeft = activityTime;
-  setsEl.innerText = sets;
+  el.setsEl.innerText = sets;
   let countdown = 3;
   el.statusText.innerText = "Activity";
   el.setsEl.innerText = sets;
