@@ -264,33 +264,27 @@ function addWorkoutField() {
   const section = document.createElement("section");
   section.classList.add("workout-input");
 
-  // Create name prompt
   const namePrompt = document.createElement("p");
   namePrompt.innerText = "Name:";
 
-  // Create name input
   const name = document.createElement("input");
   name.type = "text";
   name.classList.add("input-field", "set-name");
   name.placeholder = "Name";
   name.required = true;
 
-  // Create description prompt
   const descriptionPrompt = document.createElement("p");
   descriptionPrompt.innerText = "Description:";
 
-  // Create description input
   const description = document.createElement("input");
   description.type = "text";
   description.classList.add("input-field", "set-description");
   description.placeholder = "Description";
   description.required = true;
 
-  // Create activity prompt
   const activityPrompt = document.createElement("p");
   activityPrompt.innerText = "Activity (Seconds):";
 
-  // Create activity input
   const activity = document.createElement("input");
   activity.type = "number";
   activity.classList.add("input-field", "set-activity");
@@ -298,11 +292,9 @@ function addWorkoutField() {
   activity.min = 0;
   activity.required = true;
 
-  // Create rest prompt
   const restPrompt = document.createElement("p");
   restPrompt.innerText = "Rest:";
 
-  // Create rest input
   const rest = document.createElement("input");
   rest.type = "number";
   rest.classList.add("input-field", "set-rest");
@@ -310,11 +302,9 @@ function addWorkoutField() {
   rest.min = 0;
   rest.required = true;
 
-  // Create sets prompt
   const setsPrompt = document.createElement("p");
   setsPrompt.innerText = "Sets:";
 
-  // Create sets input
   const sets = document.createElement("input");
   sets.type = "number";
   sets.classList.add("input-field", "set-sets");
@@ -322,7 +312,6 @@ function addWorkoutField() {
   sets.min = 1;
   sets.required = true;
 
-  // Create delete button
   const btnDel = document.createElement("button");
   btnDel.type = "button";
   btnDel.classList.add("del-workout-btn");
@@ -361,7 +350,6 @@ function collectWorkouts() {
       const rest = section.querySelector(".set-rest");
       const sets = section.querySelector(".set-sets");
 
-      // Only construct a workout object if all elements are found
       if (name && description && activity && rest && sets) {
         return {
           wrk_id: generateId(),
