@@ -34,31 +34,41 @@ function startTimer() {
   isRunning = true;
   timeLeft = activityTime;
   el.setsEl.innerText = sets;
-  let countdown = 3;
   el.statusText.innerText = "Activity";
   el.setsEl.innerText = sets;
   el.setsSection.style.display = "block";
   document.body.style.backgroundColor = "#ff9900";
+  let countdown = 3;
 
   interval = setInterval(() => {
-    timeLeft--;
-    if (timeLeft <= 0) {
-      if (el.statusText.innerText === "Activity") {
-        el.statusText.innerText = "Rest";
-        document.body.style.backgroundColor = "#66b3ff";
-        timeLeft = restTime;
-        sets--;
-        el.setsEl.innerText = sets;
-      } else {
-        el.statusText.innerText = "Activity";
-        document.body.style.backgroundColor = "#ff9900";
-        timeLeft = activityTime;
+    if (countdown >= 0) {
+      document.body.style.backgroundColor = "#99ff99";
+      el.statusText.innerText = `Get Ready!`;
+      el.timerEl.innerText = `${countdown}`;
+      countdown--;
+    } else {
+      el.statusText.innerText = "Activity";
+      document.body.style.backgroundColor = "#ff9900";
+      el.setsSection.style.display = "block";
+      timeLeft--;
+      if (timeLeft <= 0) {
+        if (el.statusText.innerText === "Activity") {
+          el.statusText.innerText = "Rest";
+          document.body.style.backgroundColor = "#66b3ff";
+          timeLeft = restTime;
+          sets--;
+          el.setsEl.innerText = sets;
+        } else {
+          el.statusText.innerText = "Activity";
+          document.body.style.backgroundColor = "#ff9900";
+          timeLeft = activityTime;
+        }
       }
+      if (sets === 0) {
+        resetTimer();
+      }
+      updateTimer();
     }
-    if (sets === 0) {
-      resetTimer();
-    }
-    updateTimer();
   }, 1000);
 }
 
